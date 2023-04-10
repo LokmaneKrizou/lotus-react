@@ -24,9 +24,4 @@ yarn-error.log*
 
 # IDE and editor files
 .idea/
-.vscode/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw*
+package-lock.json
