@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.module.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -15,11 +14,11 @@ const App = () => {
         <div className={styles.app}>
             <Navbar />
             <Routes>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/search" component={SearchPage} />
-                <Route path="/product/:productId" component={ProductDetailsPage} />
-                <Route path="/cart" component={CartPage} />
-                <Route path="/checkout" component={CheckoutPage} />
+                <Route exact path="/" element={<HomePage />} />
+                <Route path="/search/:searchTerm" element={<SearchPage/>} />
+                <Route path="/product/:productId" element={<ProductDetailsPage/>} />
+                <Route path="/cart" element={<CartPage/>} />
+                <Route path="/checkout" element={<CheckoutPage/>} />
             </Routes>
         </div>
     );

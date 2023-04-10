@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
@@ -8,17 +8,18 @@ import reportWebVitals from './reportWebVitals';
 import i18n from './translation/i18n';
 import {I18nextProvider} from 'react-i18next';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+
+ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-        <Provider store={store}>
-            <I18nextProvider i18n={i18n}>
+    <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-            </I18nextProvider>
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
+        </I18nextProvider>
+    </Provider>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

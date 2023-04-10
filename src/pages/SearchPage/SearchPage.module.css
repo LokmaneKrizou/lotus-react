@@ -1,0 +1,19 @@
+.searchPage {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.searchResults {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.rtl {
+    direction: rtl;
+}

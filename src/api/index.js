@@ -2,13 +2,13 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'http://localhost:3000/';
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,
 });
 
-const index = {
+const api = {
     products: {
         async getCategories() {
             const response = await apiClient.get('/categories');
@@ -29,9 +29,13 @@ const index = {
             return response.data;
         },
 
-        async searchProducts(query, cursor, limit) {
+        async searchProducts(searchTerm, cursor = null, limit = 10) {
             const response = await apiClient.get('/products/search', {
-                params: {q: query, cursor, limit},
+                params: {
+                    query: searchTerm,
+                    cursor,
+                    limit,
+                },
             });
             return response.data;
         },
@@ -45,4 +49,4 @@ const index = {
     // ... add other API calls as needed
 };
 
-export default index;
+export default api;
