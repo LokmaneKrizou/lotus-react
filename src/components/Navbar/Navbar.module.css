@@ -1,0 +1,134 @@
+.rtl {
+    direction: rtl;
+}
+
+.rtl .searchForm input {
+    padding: 10px 20px 10px 40px;
+}
+
+.rtl .searchForm button {
+    left: 15px;
+    right: auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #000;
+}
+
+.searchForm {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.searchForm input {
+    border: none;
+    background-color: #f5f5f5;
+    padding: 10px 40px 10px 20px;
+    border-radius: 9999px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+}
+
+.searchForm button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #8d8d8d;
+}
+
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+.navLinks button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 40px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.navLinks button:hover {
+    background-color: #e6e6e6;
+}
+
+.languageBtn,
+.bagBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 9999px;
+}
+
+.bagBtn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #e78ed9;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .searchForm {
+        order: 3;
+        max-width: 100%;
+    }
+
+    .navLinks {
+        order: 2;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .logo {
+        order: 1;
+        margin-bottom: 20px;
+    }
+}

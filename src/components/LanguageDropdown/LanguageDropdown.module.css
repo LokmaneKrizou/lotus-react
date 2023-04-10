@@ -1,0 +1,66 @@
+.languageDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.languageBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.languageBtn:hover {
+    background-color: #e6e6e6;
+}
+
+.languageList {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.languageItem {
+    display: flex;
+    align-items: center;
+}
+
+.languageOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.languageOption:hover {
+    background-color: #f5f5f5;
+}
+
+.languageOption img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.languageBtn img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.rtl .languageMenuItem {
+    flex-direction: row-reverse;
+}
