@@ -10,15 +10,20 @@
     left: 15px;
     right: auto;
 }
-
-.navbar {
+.navbarContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
     flex-wrap: wrap;
-    padding: 1rem;
-    background-color: #ffffff;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar {
+    height: 10%;
+    width: 100%; /* Add this line */
+    margin: 0; /* Add this line */
+    background-color: #ffffff; /* Add background-color here */
+    box-shadow: 0 0.5pt 0 rgba(0, 0, 0, 0.1); /* Add box-shadow here */
 }
 
 .logo {
@@ -53,7 +58,7 @@
 }
 
 .searchForm button {
-    padding: 0.5rem 1rem;
+    padding: 1rem 2rem 1rem 1rem;
     background: none;
     border: none;
     font-size: 16px;
@@ -108,7 +113,7 @@
 }
 
 @media (max-width: 1048px) {
-    .navbar {
+    .navbarContainer {
         justify-content: space-between;
     }
 

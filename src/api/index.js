@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000/';
+const API_BASE_URL = 'http://192.168.1.82:3000/';
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,
@@ -11,7 +11,7 @@ const apiClient = axios.create({
 const api = {
     products: {
         async getCategories() {
-            const response = await apiClient.get('/categories');
+            const response = await apiClient.get('/products/categories');
             return response.data;
         },
 

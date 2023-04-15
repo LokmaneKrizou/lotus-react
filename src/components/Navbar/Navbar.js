@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate ,useLocation} from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ const Navbar = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
 
     useEffect(() => {
         const storedSearchTerm = localStorage.getItem('searchTerm');
@@ -30,41 +31,46 @@ const Navbar = () => {
         }
     };
 
-    const [inputSearchTerm, setInputSearchTerm] = useState(searchTerm);
+    const regex = /search\/(.+)/;
+    const searchTermFromPath = location.pathname.match(regex)?.[1] || '';
+
+    const [inputSearchTerm, setInputSearchTerm] = useState(searchTermFromPath || searchTerm);
 
     const isRtl = useSelector((state) => state.rtl.isRtl);
     const rtlStyles = isRtl ? styles.rtl : '';
 
     return (
         <nav className={`${styles.navbar} ${rtlStyles}`}>
-            <div className={styles.logo}>
-                <Link to="/">Lotus</Link>
-            </div>
-            <form className={styles.searchForm} onSubmit={handleSearch}>
-                <input
-                    type="text"
-                    placeholder={t('navbar.searchHint')}
-                    value={inputSearchTerm}
-                    onChange={(e) => setInputSearchTerm(e.target.value)}
-                />
-                <button type="submit">
-                    <FontAwesomeIcon icon={faSearch} />
-                </button>
-            </form>
-            <div className={styles.navLinks}>
-                <Link to="/signin">
-                    <button>{t('navbar.signIn')}</button>
-                </Link>
-                <LanguageDropdown
-                    isRtl={isRtl}
-                    onLanguageChange={(language) =>
-                        language === 'ar' ? dispatch(toggleRtl()) : dispatch(toggleRtl(false))
-                    }
-                />
-                <button className={styles.bagBtn}>
-                    <FontAwesomeIcon icon={faShoppingBag} size={"xl"}/>
-                </button>
-            </div>
+            <div className={styles.navbarContainer}>
+                <div className={styles.logo}>
+                    <Link to="/" onClick={(e)=>setInputSearchTerm('')}>Lotus</Link>
+                </div>
+                <form className={styles.searchForm} onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        placeholder={t('navbar.searchHint')}
+                        value={inputSearchTerm}
+                        onChange={(e) => setInputSearchTerm(e.target.value)}
+                    />
+                    <button type="submit">
+                        <FontAwesomeIcon icon={faSearch} />
+                    </button>
+                </form>
+                <div className={styles.navLinks}>
+                    <Link to="/signin">
+                        <button>{t('navbar.signIn')}</button>
+                    </Link>
+                    <LanguageDropdown
+                        isRtl={isRtl}
+                        onLanguageChange={(language) =>
+                            language === 'ar' ? dispatch(toggleRtl()) : dispatch(toggleRtl(false))
+                        }
+                    />
+                    <button className={styles.bagBtn}>
+                        <FontAwesomeIcon icon={faShoppingBag} size={"xl"}/>
+                    </button>
+                </div>
+                </div>
         </nav>
     );
 };

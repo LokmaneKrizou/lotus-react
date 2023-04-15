@@ -1,0 +1,18 @@
+.testimonialCard {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    background-color: #fff;
+    text-align: center;
+}
+
+.testimonialCard p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.testimonialCard h4 {
+    font-size: 18px;
+    font-weight: bold;
+}

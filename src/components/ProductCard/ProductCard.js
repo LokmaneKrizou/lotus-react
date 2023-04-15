@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './ProductCard.module.css';
 
-const ProductCard = ({product, isRtl}) => {
+const ProductCard = ({product, isRtl, className}) => {
     const {id, title, images, price, colors, description, sizes} = product;
     const showAddToCart = (colors && colors.length > 1) || (sizes && sizes.length > 1)
     const rtlStyles = isRtl ? styles.rtl : '';
 
     return (
-        <div className={`${styles.productCard} ${rtlStyles}`}>
+        <div className={`${className? className:styles.productCard} ${rtlStyles}`}>
             <div className={styles.productImage}>
                 <img src={images[0]} alt={title}/>
             </div>

@@ -23,7 +23,7 @@ const SearchPage = () => {
         <div className={`${styles.searchPage} ${rtlStyles}`}>
             <div className={styles.searchResults}>
                 {products.map((product) => (
-                    <ProductCard product={product} isRtl={isRtl} />
+                    <ProductCard product={product} isRtl={isRtl} className={styles.productCard} />
                 ))}
             </div>
         </div>
