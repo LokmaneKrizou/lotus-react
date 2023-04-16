@@ -19,7 +19,7 @@ const CategoryCard = ({ category }) => {
 
     return (
         <div className={styles.categoryCard}>
-            <Link to={`/categories/${category.id}`}>
+            <Link to={`/categories/${category}`}>
                 <div className={styles.categoryBackground} style={backgroundStyle}></div>
             </Link>
             <div className={styles.categoryName}>{category}</div>

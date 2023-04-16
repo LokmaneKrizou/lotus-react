@@ -1,0 +1,126 @@
+.slideshow {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.slideContainer {
+    height: 30rem;
+    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+}
+.containerItem{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: inherit;
+}
+
+.containerItem img {
+    max-height: 100%;
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+.arrowLeft,
+.arrowRight {
+    position: inherit;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1;
+    width: 50px; /* Add this line */
+    height: 50px; /* Add this line */
+    padding: 0; /* Update this line */
+    line-height: 40px; /* Add this line */
+    text-align: center; /* Add this line */
+    border-radius: 50%;
+}
+
+.arrowLeft:hover,
+.arrowRight:hover {
+    background-color: rgba(239, 239, 239, 0.7);
+
+}
+
+.arrowLeft {
+    left: 10px;
+}
+
+.arrowRight {
+    right: 10px;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto; /* Add this line */
+    max-height: 600px;
+}
+
+.thumbnail {
+    cursor: pointer;
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.thumbnail.selected {
+    border: 1px solid #333;
+}
+
+
+.dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.dot.selected {
+    background-color: #333;
+}
+.rtl {
+    direction: rtl;
+}
+@media (max-width: 800px) {
+    .slideshow {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .slideContainer {
+        height: 30%;
+        gap: 10px;
+        width: 100%;
+    }
+    .arrowRight,.arrowLeft{
+        display: none;
+    }
+    .thumbnails {
+        display: none;
+    }
+
+    .dots {
+        display: flex;
+    }
+}

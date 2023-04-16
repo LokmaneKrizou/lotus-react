@@ -5,6 +5,7 @@ import categoriesReducer from './slices/categoriesSlice';
 import mostSearchedProductsReducer from './slices/mostSearchedProductsSlice';
 import newArrivalsReducer from './slices/newArrivalsSlice';
 import searchReducer from './slices/searchSlice';
+import productDetailsReducer from './slices/productDetailsSlice';
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         search: searchReducer,
         categories: categoriesReducer,
         mostSearchedProducts: mostSearchedProductsReducer,
-        newArrivals: newArrivalsReducer
+        newArrivals: newArrivalsReducer,
+        productDetails: productDetailsReducer,
     }
 });
 

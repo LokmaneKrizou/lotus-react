@@ -1,11 +1,20 @@
-/* App.module.css */
+ /*App.module.css */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 .app {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0 !important;
 }
-.footer {
-    padding: 20px;
-    background-color: #333;
+footer {
+    margin-top: auto;
 }

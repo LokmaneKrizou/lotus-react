@@ -1,0 +1,19 @@
+.section-header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #777;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}

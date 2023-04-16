@@ -9,13 +9,10 @@ const SearchPage = () => {
     const { searchTerm } = useParams();
     const dispatch = useDispatch();
     const products = useSelector((state) => state.search.products);
-    const status = useSelector((state) => state.search.status);
-    const error = useSelector((state) => state.search.error);
     const isRtl = useSelector((state) => state.rtl.isRtl);
     const rtlStyles = isRtl ? styles.rtl : '';
 
     useEffect(() => {
-        console.log(searchTerm);
         dispatch(fetchSearchResults(searchTerm));
     }, [searchTerm, dispatch]);
 

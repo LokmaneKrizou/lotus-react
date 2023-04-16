@@ -10,12 +10,12 @@
     font-size: 25px;
     text-align: center;
     font-weight: lighter;
-    margin-bottom: 20px;
-    color: #525252;
+    margin: 20px;
+    color: #5b5b5b;
 }
 .categoriesContainer{
     width: 100%;
-    background-image: linear-gradient(to bottom, rgb(215, 230, 245) 30vh, transparent 50vh);
+    background-image: linear-gradient(to bottom, rgb(252, 232, 227) 40%, transparent 90%);
 }
 
 .rtl {

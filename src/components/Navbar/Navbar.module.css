@@ -21,9 +21,9 @@
 .navbar {
     height: 10%;
     width: 100%; /* Add this line */
-    margin: 0; /* Add this line */
+    margin: 1px 0; /* Add this line */
     background-color: #ffffff; /* Add background-color here */
-    box-shadow: 0 0.5pt 0 rgba(0, 0, 0, 0.1); /* Add box-shadow here */
+    box-shadow: 0 1pt 2pt rgba(0, 0, 0, 0.1); /* Add box-shadow here */
 }
 
 .logo {
@@ -115,6 +115,7 @@
 @media (max-width: 1048px) {
     .navbarContainer {
         justify-content: space-between;
+        margin: 10px;
     }
 
     .searchForm {
