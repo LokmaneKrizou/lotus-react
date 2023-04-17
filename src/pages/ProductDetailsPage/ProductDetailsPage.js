@@ -30,6 +30,10 @@ const ProductDetailsPage = () => {
     const handleSizeChange = (selectedSize) => {
         console.log('Selected size:', selectedSize);
     };
+    const handleAddToCart = () => {
+        console.log('Add to cart clicked');
+        // Implement add to cart functionality here
+    };
     return (
         <div className={`${styles.productDetails} ${rtlStyles}`}>
             <div className={styles.body}>
@@ -38,7 +42,7 @@ const ProductDetailsPage = () => {
                     <h1>{product.title}</h1>
                     <h2>{product.price}DA</h2>
                     <p>{product.description}</p>
-                    <div>
+                    <div className={styles.dropdownsWrapper}>
                         {product.colors && product.colors.length > 1 ?
                             <DropDown
                                 label="Color"
@@ -52,12 +56,15 @@ const ProductDetailsPage = () => {
                                 onChange={handleSizeChange}
                             /> : null
                         }
+                        <button className={styles.addToCartButton} onClick={handleAddToCart}>
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className={styles.body}>
-                <ProductsList products={similarProducts} header={"Similar Products"}/>
-            </div>
+           <div className={styles.similarProducts}>
+               <ProductsList products={similarProducts} header={"Similar Products"}/>
+           </div>
         </div>
     );
 };

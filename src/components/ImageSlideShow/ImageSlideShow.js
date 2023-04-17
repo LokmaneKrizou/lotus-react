@@ -24,7 +24,7 @@ const ImageSlideshow = ({images}) => {
 
             <div className={styles.slideContainer}>
                 <div className={styles.thumbnails}>
-                    {images.map((image, index) => (
+                    {images.length>1 ?images.map((image, index) => (
                         <img
                             key={index}
                             src={image}
@@ -34,7 +34,7 @@ const ImageSlideshow = ({images}) => {
                             }`}
                             onClick={() => handleThumbnailClick(index)}
                         />
-                    ))}
+                    )):null}
                 </div>
                 <div className={styles.containerItem}>
                     {showSliderIndicator ?

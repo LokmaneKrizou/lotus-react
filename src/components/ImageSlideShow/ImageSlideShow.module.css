@@ -6,7 +6,6 @@
 
 .slideContainer {
     height: 30rem;
-    width: 50rem;
     display: flex;
     flex-direction: row;
     gap: 20px;
