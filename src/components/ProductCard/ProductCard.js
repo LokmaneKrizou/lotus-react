@@ -14,7 +14,7 @@ const ProductCard = ({product, isRtl, className}) => {
                 </div>
                 <div className={styles.productInfo}>
                     <div>
-                        <h3 className={styles.description}>{title}</h3>
+                        <h3 className={styles.title}>{title}</h3>
                         {/*<p className={styles.description}>{description}</p>*/}
                         <p className={styles.price}>DA {price}</p>
                     </div>

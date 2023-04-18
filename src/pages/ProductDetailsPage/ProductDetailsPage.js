@@ -7,6 +7,13 @@ import ImageSlideShow from "../../components/ImageSlideShow/ImageSlideShow";
 import DropDown from "../../components/DropDown/DropDown";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import {fetchMostSearchedProducts} from '../../redux/slices/mostSearchedProductsSlice';
+import {
+    setSize,
+    setColor,
+    setQuantity,
+    resetSelection,
+    isAddToCartDisabled
+} from "../../redux/slices/productDetailsSlice";
 
 const ProductDetailsPage = () => {
     const {productId} = useParams();
@@ -14,33 +21,36 @@ const ProductDetailsPage = () => {
     useEffect(() => {
         dispatch(fetchProductDetails(productId));
         dispatch(fetchMostSearchedProducts())
+        return () => {
+            dispatch(resetSelection());
+        };
     }, [productId, dispatch]);
 
     const product = useSelector((state) => state.productDetails.product);
     const similarProducts = useSelector((state) => state.mostSearchedProducts.products);
     const isRtl = useSelector((state) => state.rtl.isRtl);
+    const addToCartDisabled = useSelector(isAddToCartDisabled);
     const rtlStyles = isRtl ? styles.rtl : '';
 
-    if (!product || !similarProducts) return null;
     const handleColorChange = (selectedColorName) => {
-        const selectedColor = product.colors.find((color) => color.name === selectedColorName);
-        console.log('Selected color:', selectedColor);
+        dispatch(setColor(selectedColorName));
     };
 
     const handleSizeChange = (selectedSize) => {
-        console.log('Selected size:', selectedSize);
+        dispatch(setSize(selectedSize));
     };
     const handleAddToCart = () => {
         console.log('Add to cart clicked');
         // Implement add to cart functionality here
     };
+    if (!product || !similarProducts) return null;
     return (
         <div className={`${styles.productDetails} ${rtlStyles}`}>
             <div className={styles.body}>
                 <ImageSlideShow images={product.images}/>
                 <div className={styles.productDescription}>
                     <h1>{product.title}</h1>
-                    <h2>{product.price}DA</h2>
+                    <h2>{product.price} DA</h2>
                     <p>{product.description}</p>
                     <div className={styles.dropdownsWrapper}>
                         {product.colors && product.colors.length > 1 ?
@@ -56,15 +66,23 @@ const ProductDetailsPage = () => {
                                 onChange={handleSizeChange}
                             /> : null
                         }
-                        <button className={styles.addToCartButton} onClick={handleAddToCart}>
+                        <DropDown
+                            label="Quantity"
+                            options={[...Array(product.totalQuantity > 10 ? 10 : product.totalQuantity).keys()].map((n) => n + 1)}
+                            onChange={(value) => dispatch(setQuantity(Number(value)))}
+                            defaultValue={1}
+                        />
+                        <button className={`${styles.addToCartButton} ${addToCartDisabled ? styles.buttonDisabled : ''}`}
+                                onClick={handleAddToCart}
+                                disabled={addToCartDisabled}>
                             Add to Cart
                         </button>
                     </div>
                 </div>
             </div>
-           <div className={styles.similarProducts}>
-               <ProductsList products={similarProducts} header={"Similar Products"}/>
-           </div>
+            <div className={styles.similarProducts}>
+                <ProductsList products={similarProducts} header={"Similar Products"}/>
+            </div>
         </div>
     );
 };
