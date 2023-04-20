@@ -15,7 +15,7 @@
 }
 .categoriesContainer{
     width: 100%;
-    background-image: linear-gradient(to bottom, rgb(252, 232, 227) 40%, transparent 90%);
+    background-image: linear-gradient(to bottom, rgb(215, 230, 245) 40%, transparent 90%);
 }
 
 .rtl {

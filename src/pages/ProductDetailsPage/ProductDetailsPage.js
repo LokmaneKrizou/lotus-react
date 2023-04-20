@@ -7,6 +7,9 @@ import ImageSlideShow from "../../components/ImageSlideShow/ImageSlideShow";
 import DropDown from "../../components/DropDown/DropDown";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import {fetchMostSearchedProducts} from '../../redux/slices/mostSearchedProductsSlice';
+import {useState} from 'react';
+import SideMenu from '../../components/SideMenu/SideMenu';
+
 import {
     setSize,
     setColor,
@@ -26,10 +29,12 @@ const ProductDetailsPage = () => {
         };
     }, [productId, dispatch]);
 
-    const product = useSelector((state) => state.productDetails.product);
+    const productDetails = useSelector((state) => state.productDetails);
+    const product = productDetails.product;
     const similarProducts = useSelector((state) => state.mostSearchedProducts.products);
     const isRtl = useSelector((state) => state.rtl.isRtl);
     const addToCartDisabled = useSelector(isAddToCartDisabled);
+    const [sideMenuVisible, setSideMenuVisible] = useState(false);
     const rtlStyles = isRtl ? styles.rtl : '';
 
     const handleColorChange = (selectedColorName) => {
@@ -40,12 +45,24 @@ const ProductDetailsPage = () => {
         dispatch(setSize(selectedSize));
     };
     const handleAddToCart = () => {
-        console.log('Add to cart clicked');
+        setSideMenuVisible(true);
+        console.log(`Add to cart clicked ${sideMenuVisible}`);
+
         // Implement add to cart functionality here
     };
+
+    const handleKeepShopping = () => {
+        setSideMenuVisible(false);
+    };
+
     if (!product || !similarProducts) return null;
     return (
         <div className={`${styles.productDetails} ${rtlStyles}`}>
+            <SideMenu
+                visible={sideMenuVisible}
+                onClose={handleKeepShopping}
+                addedItem={productDetails}
+            />
             <div className={styles.body}>
                 <ImageSlideShow images={product.images}/>
                 <div className={styles.productDescription}>
@@ -72,9 +89,10 @@ const ProductDetailsPage = () => {
                             onChange={(value) => dispatch(setQuantity(Number(value)))}
                             defaultValue={1}
                         />
-                        <button className={`${styles.addToCartButton} ${addToCartDisabled ? styles.buttonDisabled : ''}`}
-                                onClick={handleAddToCart}
-                                disabled={addToCartDisabled}>
+                        <button
+                            className={`${styles.addToCartButton} ${addToCartDisabled ? styles.buttonDisabled : ''}`}
+                            onClick={handleAddToCart}
+                            disabled={addToCartDisabled}>
                             Add to Cart
                         </button>
                     </div>

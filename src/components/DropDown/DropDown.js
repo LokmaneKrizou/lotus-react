@@ -11,8 +11,8 @@ const CustomDropdown = ({label, options, onChange, defaultValue}) => {
         <div className={`${styles.dropdownContainer} ${rtlStyles}`}>
             <label className={styles.dropdownLabel}>{label} *</label>
             <div className={styles.dropdownWrapper}>
-                <select className={styles.dropdown} onChange={handleChange} defaultValue={defaultValue}>
-                        <option value="" disabled selected>
+                <select className={styles.dropdown} onChange={handleChange} defaultValue={defaultValue?defaultValue:'label'}>
+                        <option value="label" disabled >
                             Select {label}
                         </option>
                     {options.map((option, index) => (

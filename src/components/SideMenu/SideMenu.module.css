@@ -1,0 +1,163 @@
+.container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1000;
+    justify-content: flex-end;
+}
+
+.sideMenu {
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    transition: width 0.3s;
+
+}
+
+.closeButton {
+    position: relative;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+    font-weight: 50;
+    cursor: pointer;
+    margin-right: 20px;
+    top: 20px;
+}
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.viewBasketButton,
+.keepShoppingButton {
+    padding: 12px 20px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    border-radius: 20px;
+}
+
+.viewBasketButton {
+    background-color: #6c0d40;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.viewBasketButton:hover {
+    color: #ffffff;
+    background-color: #6c0d40;
+    transform: scale(1.05);
+
+}
+.itemAddedDetails{
+
+}
+.itemInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.productImageContainer {
+    position: relative;
+    display: flex;
+
+}
+
+.greenTick {
+    position: absolute;
+    color: #24a43b;
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+.itemTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.itemPrice {
+    font-size: 18px;
+    color: #6c0d40;
+}
+
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+}
+.messageContainer h3,p{
+    margin: 5px;
+}
+
+.productImage {
+    position: relative;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+.tickIcon {
+    position: absolute;
+    background-color: #28a745;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/*.productImage {*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*}*/
+.keepShoppingButton {
+    background-color: #fff;
+    color: #6c0d40;
+}
+
+.keepShoppingButton:hover {
+    transform: scale(1.05);
+    background-color: #e8e8e8;
+
+}
+
+
+.closeButton:hover {
+    color: #888;
+}
+
+@media (max-width: 600px) {
+    .closeButton {
+        display: none;
+    }
+    .sideMenu {
+        width: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+    .backdrop {
+        display: none;
+    }
+}
