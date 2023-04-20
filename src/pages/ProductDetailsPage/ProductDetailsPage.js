@@ -32,9 +32,9 @@ const ProductDetailsPage = () => {
     const productDetails = useSelector((state) => state.productDetails);
     const product = productDetails.product;
     const similarProducts = useSelector((state) => state.mostSearchedProducts.products);
-    const isRtl = useSelector((state) => state.rtl.isRtl);
     const addToCartDisabled = useSelector(isAddToCartDisabled);
     const [sideMenuVisible, setSideMenuVisible] = useState(false);
+    const isRtl = useSelector((state) => state.rtl.isRtl);
     const rtlStyles = isRtl ? styles.rtl : '';
 
     const handleColorChange = (selectedColorName) => {

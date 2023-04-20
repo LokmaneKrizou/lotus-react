@@ -1,15 +1,19 @@
 import React from 'react';
 import styles from './SideMenu.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faClose, faWindowClose} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faClose} from "@fortawesome/free-solid-svg-icons";
+import {useSelector} from "react-redux";
 
 
 const SideMenu = ({visible, onClose, addedItem}) => {
+    const isRtl = useSelector((state) => state.rtl.isRtl);
+    const rtlStyles = isRtl ? styles.rtl : '';
+
     if (!visible) {
         return null;
     }
     return (
-        <>
+        <div className={rtlStyles}>
             <div className={styles.backdrop} onClick={onClose}></div>
             <div className={styles.container}>
                 <button className={styles.closeButton} onClick={onClose}>
@@ -33,7 +37,7 @@ const SideMenu = ({visible, onClose, addedItem}) => {
                     <button className={styles.keepShoppingButton} onClick={onClose}>Keep Shopping</button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

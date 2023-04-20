@@ -3,6 +3,7 @@
     position: fixed;
     top: 0;
     right: 0;
+    left: unset;
     height: 100%;
     z-index: 1000;
     justify-content: flex-end;
@@ -10,7 +11,6 @@
 
 .sideMenu {
     top: 0;
-    right: 0;
     width: 300px;
     height: 100%;
     background-color: #fff;
@@ -32,7 +32,12 @@
     font-weight: 50;
     cursor: pointer;
     margin-right: 20px;
+    margin-left: unset;
     top: 20px;
+}
+.rtl .closeButton{
+    margin-right: unset;
+    margin-left: 20px;
 }
 .backdrop {
     position: fixed;
@@ -119,6 +124,8 @@
     position: absolute;
     background-color: #28a745;
     border-radius: 50%;
+    right: 0;
+    left: unset;
     width: 20px;
     height: 20px;
     display: flex;
@@ -126,11 +133,11 @@
     align-items: center;
     color: #fff;
 }
+.rtl .tickIcon{
+    right: unset;
+    left: 0;
+}
 
-/*.productImage {*/
-/*    max-width: 100%;*/
-/*    height: auto;*/
-/*}*/
 .keepShoppingButton {
     background-color: #fff;
     color: #6c0d40;
@@ -146,7 +153,13 @@
 .closeButton:hover {
     color: #888;
 }
-
+.rtl {
+    direction: rtl;
+}
+.rtl .container{
+    right: unset;
+    left: 0;
+}
 @media (max-width: 600px) {
     .closeButton {
         display: none;
