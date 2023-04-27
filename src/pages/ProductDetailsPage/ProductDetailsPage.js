@@ -68,7 +68,7 @@ const ProductDetailsPage = () => {
                 <div className={styles.productDescription}>
                     <h1>{product.title}</h1>
                     <h2>{product.price} DA</h2>
-                    <p>{product.description}</p>
+                    <pre>{product.description}</pre>
                     <div className={styles.dropdownsWrapper}>
                         {product.colors && product.colors.length > 1 ?
                             <DropDown
