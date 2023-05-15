@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import styles from './ProductDetailsPage.module.css';
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchProductDetails} from "../../redux/slices/productDetailsSlice";
+import {fetchProductDetails, setVariantOption} from "../../redux/slices/productDetailsSlice";
 import ImageSlideShow from "../../components/ImageSlideShow/ImageSlideShow";
 import DropDown from "../../components/DropDown/DropDown";
 import ProductsList from "../../components/ProductsList/ProductsList";
@@ -11,44 +11,50 @@ import {useState} from 'react';
 import SideMenu from '../../components/SideMenu/SideMenu';
 
 import {
-    setSize,
-    setColor,
     setQuantity,
     resetSelection,
     isAddToCartDisabled
 } from "../../redux/slices/productDetailsSlice";
+import {addItemToCartAction, addToCart} from "../../redux/slices/cartSlice";
+import ErrorDialog from '../../components/ErrorDialog/ErrorDialog';
 
 const ProductDetailsPage = () => {
     const {productId} = useParams();
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(fetchProductDetails(productId));
-        dispatch(fetchMostSearchedProducts())
-        return () => {
-            dispatch(resetSelection());
-        };
-    }, [productId, dispatch]);
-
     const productDetails = useSelector((state) => state.productDetails);
     const product = productDetails.product;
+    const [errorDialogVisible, setErrorDialogVisible] = useState(false);
     const similarProducts = useSelector((state) => state.mostSearchedProducts.products);
     const addToCartDisabled = useSelector(isAddToCartDisabled);
     const [sideMenuVisible, setSideMenuVisible] = useState(false);
     const isRtl = useSelector((state) => state.rtl.isRtl);
     const rtlStyles = isRtl ? styles.rtl : '';
 
-    const handleColorChange = (selectedColorName) => {
-        dispatch(setColor(selectedColorName));
+    useEffect(() => {
+        dispatch(fetchProductDetails(productId));
+        dispatch(fetchMostSearchedProducts());
+        return () => {
+            dispatch(resetSelection());
+        };
+    }, [productId, dispatch]);
+
+    const handleAddToCart = async () => {
+        const item = {
+            product: productDetails.product,
+            variantSelections: productDetails.variantSelections,
+            quantity: productDetails.quantity,
+        };
+        dispatch(addToCart(item))
+        const result = await dispatch(addItemToCartAction());
+        if (result.success) {
+            setSideMenuVisible(true);
+        } else {
+            setErrorDialogVisible(true);
+        }
     };
 
-    const handleSizeChange = (selectedSize) => {
-        dispatch(setSize(selectedSize));
-    };
-    const handleAddToCart = () => {
-        setSideMenuVisible(true);
-        console.log(`Add to cart clicked ${sideMenuVisible}`);
-
-        // Implement add to cart functionality here
+    const handleCloseErrorDialog = () => {
+        setErrorDialogVisible(false);
     };
 
     const handleKeepShopping = () => {
@@ -63,6 +69,12 @@ const ProductDetailsPage = () => {
                 onClose={handleKeepShopping}
                 addedItem={productDetails}
             />
+            <ErrorDialog
+                visible={errorDialogVisible}
+                onClose={handleCloseErrorDialog}
+                title="Error"
+                message="Failed to add item to cart."
+            />
             <div className={styles.body}>
                 <ImageSlideShow images={product.images}/>
                 <div className={styles.productDescription}>
@@ -70,18 +82,19 @@ const ProductDetailsPage = () => {
                     <h2>{product.price} DA</h2>
                     <pre>{product.description}</pre>
                     <div className={styles.dropdownsWrapper}>
-                        {product.colors && product.colors.length > 1 ?
-                            <DropDown
-                                label="Color"
-                                options={product.colors.map((color) => color.name)}
-                                onChange={handleColorChange}
-                            /> : null}
-                        {product.sizes && product.sizes.length > 1 ?
-                            <DropDown
-                                label="Size"
-                                options={product.sizes}
-                                onChange={handleSizeChange}
-                            /> : null
+                        {product.variants ? product.variants.map(variant => {
+                                return (variant.options && variant.options.length > 1) ?
+                                    <DropDown
+                                        label={variant.name}
+                                        options={variant.options.map(option => option.value)}
+                                        onChange={(selectedOption) => dispatch(setVariantOption({
+                                            variantName: variant.name,
+                                            selectedOption
+                                        }))}
+
+                                    /> : null
+                            })
+                            : null
                         }
                         <DropDown
                             label="Quantity"

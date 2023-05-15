@@ -1,0 +1,55 @@
+/* components/ErrorDialog/ErrorDialog.module.css */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.dialog {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    padding: 20px;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.body {
+    margin-bottom: 20px;
+}
+
+.footer {
+    text-align: right;
+}
+
+.closeButton {
+    background-color: #f44336;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+}
+
+.closeButton:hover {
+    background-color: #da190b;
+    color: white;
+}

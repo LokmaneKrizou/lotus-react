@@ -1,0 +1,62 @@
+.orderItemsContainer {
+    height: auto;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+}
+
+.orderItems {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+
+
+.orderItems.expanded::after {
+    display: none;
+}
+.orderItems.collapsed::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7) 10%, rgba(255,255,255,1) 100%);
+    z-index: 1;
+}
+
+.orderItemsContainer h2 {
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: #333333;
+}
+
+
+.expandButton {
+    margin-top: 10px;
+    padding: 10px 18px;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #313131;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: fit-content;
+    z-index: 3;
+    transition: background-color 0.3s;
+}
+.expandButton:hover {
+    background-color: #000000;
+    transform: scale(1.05);
+}

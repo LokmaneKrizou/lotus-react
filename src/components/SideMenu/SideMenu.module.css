@@ -149,7 +149,12 @@
 
 }
 
-
+.menuLink {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
 .closeButton:hover {
     color: #888;
 }

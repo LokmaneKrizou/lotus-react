@@ -1,0 +1,66 @@
+/* ClientInfo.module.css */
+
+.clientInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background: #ffffff;
+}
+.label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.clientInfo h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333333;
+}
+
+.infoForm,
+.savedInfo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.infoForm input,
+.savedInfo p {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.infoForm input{
+    border: 1px solid #cccccc;
+}
+.submit {
+    margin-top: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #313131;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: fit-content;
+    align-self: end;
+    transition: background-color 0.3s;
+}
+
+
+.submit:not([disabled]):hover {
+    color: #ffffff;
+    background-color: #000000;
+    transform: scale(1.05);
+}
+
+.buttonDisabled {
+    border: 1px solid #ccc;
+    background-color: #ccc;
+    cursor: not-allowed;
+}

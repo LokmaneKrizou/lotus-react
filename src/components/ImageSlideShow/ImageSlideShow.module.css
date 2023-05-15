@@ -63,7 +63,7 @@
     flex-direction: column;
     gap: 10px;
     overflow-y: auto; /* Add this line */
-    max-height: 600px;
+    max-height: 450px;
 }
 
 .thumbnail {

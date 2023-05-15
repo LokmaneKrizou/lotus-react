@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import api from '../../api';
 
-// Async Thunk to fetch product details
 export const fetchProductDetails = createAsyncThunk(
     'productDetails/fetchProductDetails',
     async (productId, {rejectWithValue}) => {
@@ -14,26 +13,24 @@ export const fetchProductDetails = createAsyncThunk(
     }
 );
 
-
 export const isAddToCartDisabled = (state) => {
     const product = state.productDetails.product;
-    const sizeSelected = state.productDetails.size !== null;
-    const colorSelected = state.productDetails.color !== null;
-    const quantity = product ? product.totalQuantity : 0;
+    const quantity = state.productDetails.quantity;
 
-    if (quantity === 0) {
+    if (!product) {
         return true;
     }
 
-    if (product.sizes?.length > 1 && !sizeSelected) {
-        return true;
-    }
+    const selectedProductVariant = product.productVariants.find(variant =>
+        variant.options.every(option =>
+            state.productDetails.variantSelections.some(selection =>
+                selection.name === option.name && selection.value === option.value
+            )
+        )
+    );
+    return !selectedProductVariant || quantity > selectedProductVariant.quantity;
 
-    if (product.colors?.length > 1 && !colorSelected) {
-        return true;
-    }
 
-    return false;
 };
 
 const productDetailsSlice = createSlice({
@@ -42,26 +39,28 @@ const productDetailsSlice = createSlice({
         product: null,
         status: "idle",
         error: null,
-        size: null,
-        color: null,
+        variantSelections: [],
         quantity: 1,
     },
     reducers: {
-        setSize: (state, action) => {
-            state.size = action.payload;
-        },
-        setColor: (state, action) => {
-            state.color = state.product.colors.find((color) => color.name === action.payload);
+        setVariantOption: (state, action) => {
+            const {variantName, selectedOption} = action.payload;
+            console.log(variantName, selectedOption)
+            const index = state.variantSelections.findIndex(variant => variant.name === variantName)
+            console.log(index)
+            if (index === -1) {
+                state.variantSelections.push({name: variantName, value: selectedOption})
+            } else {
+                state.variantSelections[index].value = selectedOption;
+            }
         },
         setQuantity: (state, action) => {
             state.quantity = action.payload;
         },
         resetSelection: (state) => {
-            state.size = null;
-            state.color = null;
+            state.variantSelections = [];
             state.quantity = 1;
         },
-        // Keep the existing reducers
     },
     extraReducers: (builder) => {
         builder
@@ -79,12 +78,11 @@ const productDetailsSlice = createSlice({
             });
     }
 });
+
 export const {
-    setSize,
-    setColor,
+    setVariantOption,
     setQuantity,
     resetSelection,
-    // Keep the existing action creators
 } = productDetailsSlice.actions;
 
 export default productDetailsSlice.reducer;

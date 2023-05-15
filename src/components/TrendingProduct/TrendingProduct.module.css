@@ -130,11 +130,16 @@
 
     .seeMoreButton {
         display: block;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+    }
+    .seeMoreButton a {
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 5px 10px;
         background-color: #333;
         color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        margin-bottom: 20px;
+        border-radius: 10px;
+        transition: color 0.3s ease, background-color 0.3s ease;
     }
 }

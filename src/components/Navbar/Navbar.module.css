@@ -109,7 +109,8 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    color: #941459;
+    stroke: #000000; /* Stroke color */
+    stroke-width: 40px; /* Stroke width */
 }
 
 @media (max-width: 1048px) {

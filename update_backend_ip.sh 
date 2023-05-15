@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Retrieve the IP address of the backend server
+BACKEND_IP=$(ipconfig getifaddr en0)
+echo "${BACKEND_IP}"
+# Update the Nginx configuration file with the new IP address
+sed -i '' "s/set \$backend .*/set \$backend $BACKEND_IP;/" /opt/homebrew/etc/nginx/servers/lotus_react.conf
+
+# Reload Nginx to apply the changes
+sudo nginx -s reload

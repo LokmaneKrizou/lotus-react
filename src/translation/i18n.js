@@ -6,12 +6,14 @@ const resources = {
     en: {
         translation: {
             "navbar.signIn": "Sign in",
+            "navbar.account": "Account",
             "navbar.searchHint":"Search for items"
         }
     },
     ar: {
         translation: {
             "navbar.signIn": "تسجيل الدخول",
+            "navbar.account": "حساب",
             "navbar.searchHint":"إبحث عن منتجات"
         }
     }

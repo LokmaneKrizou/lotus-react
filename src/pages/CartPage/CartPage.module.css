@@ -1,0 +1,36 @@
+.cartPage {
+    display: grid;
+    grid-template-columns: 50% 15% 35%;
+    line-grid: create;
+    margin: 20px 40px;
+}
+.divider{
+    width: 1px;
+    height: 100%;
+    margin: 0 50%;
+    border-radius: 8px;
+    background-color: #ecebeb;
+}
+.emptyView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* align vertically */
+    height: 50vh;
+}
+
+
+.rtl {
+    direction: rtl;
+}
+@media screen and (max-width: 860px) {
+    .divider{
+        display: none;
+    }
+    .cartPage {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin: 20px 30px;
+    }
+}

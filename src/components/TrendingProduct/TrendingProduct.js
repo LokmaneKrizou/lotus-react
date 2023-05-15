@@ -28,7 +28,7 @@ const TrendingProduct = ({isRtl}) => {
                 <div className={styles.productDescription}>{trendingProduct.description}</div>
             </div>
 
-            <a href="#" className={styles.seeMoreButton}>See More</a>
+            <div className={styles.seeMoreButton}><Link to={`/product/${trendingProduct._id}`}>See More</Link></div>
         </div>
     );
 };
