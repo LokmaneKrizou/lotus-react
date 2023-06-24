@@ -116,7 +116,9 @@ const api = {
         },
 
         async logout() {
-            const response = await apiClient.get('/auth/logout');
+            const response = await apiClient.get('/auth/logout', {
+                headers: {needsAuth: true}
+            });
             return response.data;
         },
 
@@ -124,6 +126,28 @@ const api = {
             const response = await apiClient.post('/auth/webTokenRefresh');
             return response.data;
         }
+    },
+    checkout: {
+        async createOrder(order) {
+            const response = await apiClient.post('/orders/create', order, {
+                headers: {needsAuth: true}
+            });
+            return response.data;
+        },
+    },
+    order: {
+        async getOrders() {
+            const response = await apiClient.get('/orders/me', {
+                headers: {needsAuth: true}
+            });
+            return response.data;
+        },
+        async cancelOrder(orderId) {
+            const response = await apiClient.get(`/orders/cancel/${orderId}`, {
+                headers: {needsAuth: true}
+            });
+            return response.data;
+        },
     },
     user: {
         async fetchUser() {

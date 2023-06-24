@@ -1,7 +1,7 @@
 // src/redux/slices/cartSlice.js
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import api from '../../api';
-import {logout} from "./authSlice";
+import {logoutSuccess} from "./authSlice";
 
 const initialState = {
     cart: {
@@ -245,7 +245,7 @@ export const cartSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.payload;
             })
-            .addCase(logout, (state) => {
+            .addCase(logoutSuccess, (state) => {
                 state.cart = {
                     id: null,
                     user: null,

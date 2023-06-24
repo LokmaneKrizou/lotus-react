@@ -33,45 +33,6 @@
     text-decoration: none;
     color: #000;
 }
-.form {
-    display: flex;
-    flex-direction: column;
-   align-content: center;
-}
-
-.label {
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.inputField {
-    width: 100%;
-    padding: 12px 18px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-    box-sizing: border-box;
-}
-
-
-.submitButton{
-    width: 100%;
-    padding: 12px 18px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #313131;
-    color: #ffffff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submitButton:hover {
-    background-color: #151515;
-}
 
 .signUpLink {
     display: block;

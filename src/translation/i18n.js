@@ -7,14 +7,28 @@ const resources = {
         translation: {
             "navbar.signIn": "Sign in",
             "navbar.account": "Account",
-            "navbar.searchHint":"Search for items"
+            "navbar.searchHint": "Search for items",
+            "currency": "{{value}} DA",
+            "Pending": "Pending",
+            "Confirmed": "Confirmed",
+            "Shipped": "Shipped",
+            "Delivered": "Delivered",
+            "Cancelled": "Cancelled",
+
         }
     },
     ar: {
         translation: {
             "navbar.signIn": "تسجيل الدخول",
             "navbar.account": "حساب",
-            "navbar.searchHint":"إبحث عن منتجات"
+            "navbar.searchHint": "إبحث عن منتجات",
+            "currency": "{{value}} دج",
+            "Pending": "قيد الانتظار",
+            "Confirmed": "مؤكد",
+            "Shipped": "شحنت",
+            "Delivered": "تم التوصيل",
+            "Cancelled": "ألغيت",
+
         }
     }
 };

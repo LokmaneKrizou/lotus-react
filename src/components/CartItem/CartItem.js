@@ -4,9 +4,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch} from "react-redux";
 import {refreshCart, removeFromCart, updateQuantity} from "../../redux/slices/cartSlice";
+import useCurrencyFormatter from "../../util/priceFormatter";
 
 const CartItem = ({item}) => {
-
+    const priceFormatter = useCurrencyFormatter();
     const dispatch = useDispatch();
 
     const onDelete = async (item) => {
@@ -42,7 +43,7 @@ const CartItem = ({item}) => {
                         <button onClick={() => increaseOne(item)}>+</button>
                     </div>
                 </div>
-                <p>${item.product.price.toFixed(2)}</p>
+                <p>{priceFormatter(item.product.price)}</p>
             </div>
             <div className={styles.cartItemDelete}>
                 <FontAwesomeIcon icon={faTrash} onClick={() => onDelete(item)}/>

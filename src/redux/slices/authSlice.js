@@ -26,8 +26,12 @@ const authSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-        logout: (state) => {
+        logoutSuccess: (state) => {
             state.user = null;
+        },
+        logoutFailure: (state,action) => {
+            state.loading = false;
+            state.error = action.payload;
         },
         fetchUserSuccess: (state, action) => {
             state.user = action.payload;
@@ -37,7 +41,7 @@ const authSlice = createSlice({
     },
 });
 
-export const {loginStart, loginSuccess, fetchUserSuccess, loginFailure, logout} = authSlice.actions;
+export const {loginStart, loginSuccess, fetchUserSuccess, loginFailure, logoutSuccess,logoutFailure} = authSlice.actions;
 
 
 export const login = (userData) => async (dispatch) => {
@@ -64,7 +68,6 @@ export const register = (userData) => async (dispatch) => {
 };
 export const fetchUser = () => async (dispatch) => {
     const accessToken = Cookies.get('accessToken');
-    console.log(accessToken)
     if (accessToken) {
         try {
             const user = await api.user.fetchUser();
@@ -74,10 +77,14 @@ export const fetchUser = () => async (dispatch) => {
         }
     }
 };
-export const signout = () => async (dispatch) => {
-    dispatch(logout());
-    await Cookies.remove('accessToken');
-    await Cookies.remove('refreshToken');
+export const signOut = () => async (dispatch) => {
+    try {
+        await api.auth.logout();
+        await Cookies.remove('accessToken');
+        dispatch(logoutSuccess());
+    } catch (error) {
+        dispatch(logoutFailure(error.message));
+    }
 };
 
 export default authSlice.reducer;

@@ -1,41 +1,67 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from '../../redux/slices/authSlice';
 import styles from './AccountDropdown.module.css';
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {logout, signout} from "../../redux/slices/authSlice";
 
-const AccountDropdown = ({isRtl}) => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+const AccountDropdown = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const dropdownRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
+
     const handleToggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
     const handleLogout = (e) => {
-        dispatch(signout())
-        handleToggleDropdown()
-    }
+        dispatch(signOut());
+        handleToggleDropdown();
+    };
 
     const redirectToManageAccount = (e) => {
-        navigate(`/account`);
-        handleToggleDropdown()
-    }
+        navigate(`/account/manage`);
+        handleToggleDropdown();
+    };
+
+    const redirectToManageOrders = (e) => {
+        navigate(`/account/orders`);
+        handleToggleDropdown();
+    };
+
+    useEffect(() => {
+        const checkIfClickedOutside = (e) => {
+            if (isOpen && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', checkIfClickedOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', checkIfClickedOutside);
+        };
+    }, [isOpen]);
 
     return (
-        <div className={styles.accountDropdown}>
+        <div className={styles.accountDropdown} ref={dropdownRef}>
             <button className={styles.accountBtn} onClick={handleToggleDropdown}>
                 <p>Account</p>
             </button>
             {isOpen && (
                 <ul className={styles.accountList}>
                     <li className={styles.accountItem}>
-                        <button className={styles.accountOption} onClick={e => redirectToManageAccount(e)}>
-                            <p>Manage</p>
+                        <button className={styles.accountOption} onClick={redirectToManageAccount}>
+                            <p>Account Info</p>
                         </button>
                     </li>
                     <li className={styles.accountItem}>
-                        <button className={styles.accountOption} onClick={e => handleLogout(e)}>
+                        <button className={styles.accountOption} onClick={redirectToManageOrders}>
+                            <p>Manage Orders</p>
+                        </button>
+                    </li>
+                    <li className={styles.accountItem}>
+                        <button className={styles.accountOption} onClick={handleLogout}>
                             <p>Logout</p>
                         </button>
                     </li>

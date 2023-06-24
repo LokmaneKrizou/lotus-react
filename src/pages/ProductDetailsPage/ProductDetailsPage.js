@@ -17,6 +17,7 @@ import {
 } from "../../redux/slices/productDetailsSlice";
 import {addItemToCartAction, addToCart} from "../../redux/slices/cartSlice";
 import ErrorDialog from '../../components/ErrorDialog/ErrorDialog';
+import useCurrencyFormatter from "../../util/priceFormatter";
 
 const ProductDetailsPage = () => {
     const {productId} = useParams();
@@ -29,7 +30,7 @@ const ProductDetailsPage = () => {
     const [sideMenuVisible, setSideMenuVisible] = useState(false);
     const isRtl = useSelector((state) => state.rtl.isRtl);
     const rtlStyles = isRtl ? styles.rtl : '';
-
+    const priceFormatter = useCurrencyFormatter();
     useEffect(() => {
         dispatch(fetchProductDetails(productId));
         dispatch(fetchMostSearchedProducts());
@@ -79,7 +80,7 @@ const ProductDetailsPage = () => {
                 <ImageSlideShow images={product.images}/>
                 <div className={styles.productDescription}>
                     <h1>{product.title}</h1>
-                    <h2>{product.price} DA</h2>
+                    <h2>{priceFormatter(product.price)}</h2>
                     <pre>{product.description}</pre>
                     <div className={styles.dropdownsWrapper}>
                         {product.variants ? product.variants.map(variant => {

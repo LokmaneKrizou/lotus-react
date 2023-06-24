@@ -20,6 +20,8 @@
     border: 1px solid #e5e5e5;
     padding: 15px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
 }
 
@@ -29,7 +31,6 @@
     border-radius: 5px;
     border: 1px solid #cccccc;
     font-size: 16px;
-    /*margin-bottom: 20px;*/
 }
 
 .deliveryButton {
@@ -54,43 +55,30 @@
 .delivery .addressForm {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .delivery .selectedAddress {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /*align-items: center;*/
 }
 
-.selectWrapper {
-    position: relative;
-    display: inline-block;
-    /*padding: 5px 30px 5px 10px; !* The padding here will appear to affect the select *!*/
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden; /* This will ensure the select element does not overlap the padding */
+.streetLabel {
+    margin-top: 10px;
+    margin-left: 4px;
+    margin-bottom: 5px;
 }
 
-.selectWrapper:after {
-    content: '⌄'; /* You can use different symbols or an SVG for a custom arrow */
-    position: absolute;
-    top: 50%;
-    scale: 150% 100%;
-    right: 10px; /* Adjust this to move the arrow horizontally */
-    transform: translateY(-50%);
-    pointer-events: none;
+.streetForm{
+    display: flex;
+    flex-direction: column;
 }
 
-.selectWrapper select {
-    width: 100%;
-    border: none;
-    box-shadow: none;
-    background: transparent none;
-    display: inline-block;
-    appearance: none; /* This removes the default arrow in some browsers (like Chrome) */
-    -webkit-appearance: none; /* This removes the default arrow in some browsers (like Safari) */
-    -moz-appearance: none; /* This removes the default arrow in Firefox */
-    cursor: pointer;
+.streetForm input{
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
 }

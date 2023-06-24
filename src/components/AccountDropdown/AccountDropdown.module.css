@@ -1,6 +1,9 @@
 .accountDropdown {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
 }
 
 .accountBtn {
@@ -14,6 +17,8 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    position: relative; /* Add this line */
+    z-index: 2; /* Add this line */
 }
 
 .accountBtn:hover {
@@ -22,28 +27,35 @@
 
 .accountList {
     position: absolute;
-    top: 40px;
-    right: 0;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
     list-style: none;
     padding: 0;
     margin: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: max-content;
+    background-color: white;
 }
 
 .accountItem {
     display: flex;
     align-items: center;
-    background-color: white;
+    justify-content: center;
+    width: 100%;
 }
 
 .accountOption {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     padding: 5px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    color: inherit;
 }
 
 .accountOption:hover {

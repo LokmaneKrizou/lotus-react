@@ -1,12 +1,10 @@
 // OrderItems.js
 
 import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
 import OrderItem from '../OrderItem/OrderItem';
 import styles from './OrderItems.module.css';
 
-const OrderItems = () => {
-    const items = useSelector((state) => state.cart.cart.items);
+const OrderItems = ({items}) => {
     const [expanded, setExpanded] = useState(false);
 
     const renderItems = () => {
@@ -19,12 +17,13 @@ const OrderItems = () => {
 
     return (
         <div className={styles.orderItemsContainer}>
-            <h2>Order List</h2>
+            <h2>Items</h2>
             <div
                 className={`${styles.orderItems} ${(!expanded && items.length > 2) ? styles.collapsed : styles.expanded}`}>
                 {renderItems()}
                 {items.length > 2 && (
-                    <button onClick={() => setExpanded(!expanded)}  className={styles.expandButton}>{!expanded?"Expand":"Collapse"}</button>
+                    <button onClick={() => setExpanded(!expanded)}
+                            className={styles.expandButton}>{!expanded ? "Expand" : "Collapse"}</button>
                 )}
             </div>
         </div>

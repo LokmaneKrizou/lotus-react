@@ -1,12 +1,11 @@
 .orderItem {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px;
     box-sizing: border-box;
-    border-bottom: 1px solid #ddd;
-    height: 100px;
     width: 100%;
+    border-bottom: 1px solid #ddd;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .orderItemImage {
@@ -22,5 +21,7 @@
 }
 
 .orderItemPrice {
-    margin-left: 10px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
 }

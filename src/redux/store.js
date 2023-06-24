@@ -7,8 +7,9 @@ import newArrivalsReducer from './slices/newArrivalsSlice';
 import searchReducer from './slices/searchSlice';
 import productDetailsReducer from './slices/productDetailsSlice';
 import cartReducer from './slices/cartSlice'
-import authReducer from  './slices/authSlice'
-import checkoutReducer from  './slices/checkoutSlice'
+import authReducer from './slices/authSlice'
+import checkoutReducer from './slices/checkoutSlice'
+import orderReducer from './slices/orderSLice'
 
 const store = configureStore({
     reducer: {
@@ -19,9 +20,11 @@ const store = configureStore({
         mostSearchedProducts: mostSearchedProductsReducer,
         newArrivals: newArrivalsReducer,
         productDetails: productDetailsReducer,
-        cart:cartReducer,
-        auth:authReducer,
-        checkout:checkoutReducer
+        cart: cartReducer,
+        auth: authReducer,
+        checkout: checkoutReducer,
+        order: orderReducer
+
     }
 });
 

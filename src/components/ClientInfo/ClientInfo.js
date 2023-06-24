@@ -4,9 +4,9 @@ import {updateClientInfo} from '../../redux/slices/checkoutSlice';
 import styles from './ClientInfo.module.css';
 
 const ClientInfo = () => {
+
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -20,6 +20,12 @@ const ClientInfo = () => {
             setEmail(user.email);
             setPhone(user.phone);
             setExpanded(false);
+            dispatch(updateClientInfo({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                phone: user.phone
+            }));
         }
     }, [user]);
 
@@ -49,7 +55,7 @@ const ClientInfo = () => {
                            onChange={(event) => handleInputChange(event, setFirstName)}/>
                     <label htmlFor="text" className={styles.label}>Lastname</label>
                     <input type="text" placeholder="LastName" value={lastName}
-                           onChange={(event) => handleInputChange(event, setLastName())}/>
+                           onChange={(event) => handleInputChange(event, setLastName)}/>
                     <label htmlFor="email" className={styles.label}>Email</label>
                     <input type="email" placeholder="Email" value={email}
                            onChange={(event) => handleInputChange(event, setEmail)}/>

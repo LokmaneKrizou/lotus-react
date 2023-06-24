@@ -47,7 +47,22 @@
     background-color: #151515;
     transform: scale(1.01);
 }
+.submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.emptyView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* align vertically */
+    height: 50vh;
+}
 
+
+.rtl {
+    direction: rtl;
+}
 @media screen and (max-width: 860px) {
 
     .checkoutContent {

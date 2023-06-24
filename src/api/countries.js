@@ -4,7 +4,7 @@ export const Algeria = {
     "states": [
         {
             "state": "Adrar",
-            "cities": ["Adrar", "Reggane", "Zaouiet Kounta"]
+            "cities": ["Adrar", "Reggane", "Zaouiet Kounta", "Aoulef", "Timimoun", "Tinerkouk", "Fenoughil", "Tamentit", "In Zghmir", "Tsabit", "Amenas", "Bouda", "Metarfa"]
         },
         {
             "state": "Chlef",

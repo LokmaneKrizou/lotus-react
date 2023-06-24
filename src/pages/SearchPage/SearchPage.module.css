@@ -1,7 +1,7 @@
 .searchPage {
     display: flex;
     flex-direction: column;
-    align-items: initial;
+    align-items: center;
     padding: 0.5rem;
     margin: 0 auto;
 }
@@ -22,7 +22,7 @@
 }
 .searchResults {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* Increase the gap */
     gap: 10px;
     margin: 5px 0;

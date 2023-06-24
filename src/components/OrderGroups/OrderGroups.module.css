@@ -1,0 +1,8 @@
+/* OrderGroups.module.css */
+
+.orderGroups {
+    flex: 1 1 auto;
+    min-width: min-content;
+    gap: 8px;
+    width: 100%;
+}

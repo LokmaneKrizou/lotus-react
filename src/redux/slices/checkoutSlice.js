@@ -5,7 +5,7 @@ import api from '../../api';
 export const createOrder = createAsyncThunk(
     'checkout/createOrder',
     async (order, thunkAPI) => {
-        const response = await api.createOrder(order);
+        const response = await api.checkout.createOrder(order);
         return response.data;
     }
 );
@@ -17,18 +17,22 @@ export const fetchDeliveryAddresses = createAsyncThunk(
         return api.getDeliveryAddresses();
     }
 );
-
 const checkoutSlice = createSlice({
     name: 'checkout',
     initialState: {
-        clientInfo: {},
-        deliveryAddress: {},
+        clientInfo: null,
+        deliveryAddress: null,
+        defaultAddress: false,
         cartItems: [],
         deliveryAddresses: [],
+        totalPrice: 0,
         status: 'idle',
         error: null,
     },
     reducers: {
+        updateStatus:(state,action)=>{
+            state.status = 'idle';
+        },
         updateClientInfo: (state, action) => {
             state.clientInfo = action.payload;
         },
@@ -36,7 +40,16 @@ const checkoutSlice = createSlice({
             state.deliveryAddress = action.payload;
         },
         updateCartItems: (state, action) => {
-            state.cartItems = action.payload;
+            const cartItems = action.payload;
+            let price= 0
+            cartItems.forEach(item => {
+                price += item.product.price * item.quantity;
+            });
+            state.totalPrice=price
+            state.cartItems = cartItems;
+        },
+        updateDefaultAddress: (state, action) => {
+            state.defaultAddress = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -45,8 +58,13 @@ const checkoutSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(createOrder.fulfilled, (state, action) => {
-                state.status = 'idle';
+                state.status = 'success';
                 state.cartItems = []; // empty the cart after order is placed
+                state.clientInfo = null
+                state.deliveryAddress = null
+                state.totalPrice = 0
+                state.error = null
+                localStorage.removeItem('cartId');
             })
             .addCase(createOrder.rejected, (state, action) => {
                 state.status = 'idle';
@@ -66,6 +84,6 @@ const checkoutSlice = createSlice({
     },
 });
 
-export const {updateClientInfo, updateDeliveryAddress, updateCartItems} = checkoutSlice.actions;
+export const {updateClientInfo, updateDeliveryAddress, updateCartItems,updateStatus,updateDefaultAddress} = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

@@ -1,0 +1,49 @@
+/* StatusChip.module.css */
+
+.statusChip {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 1pt 2pt rgba(0, 0, 0, 0.1);
+    direction: ltr;
+}
+
+.statusChip.rtl {
+    direction: rtl;
+}
+
+.statusChip.selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.statusIndicator {
+    margin: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.statusChip.rtl .icon {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    .statusChip {
+        padding: 5px 8px;
+    }
+
+    .icon {
+        width: 15px;
+        height: 15px;
+    }
+}

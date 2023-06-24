@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CartOptionsDialog.module.css';
 
-const CartOptionsDialog = ({ onClose, onSelect }) => {
+const CartOptionsDialog = ({onSelect}) => {
     return (
         <div className={styles.dialogOverlay}>
             <div className={styles.dialogContent}>

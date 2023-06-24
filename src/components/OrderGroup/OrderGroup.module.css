@@ -1,0 +1,27 @@
+.orderGroup{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.order{
+    margin-bottom: 20px;
+}
+.groupName {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* For medium screens */
+@media screen and (max-width: 920px) {
+    .groupName {
+        font-size: 16px;
+    }
+}
+
+/* For small screens */
+@media screen and (max-width: 600px) {
+    .groupName {
+        font-size: 16px;
+    }
+}

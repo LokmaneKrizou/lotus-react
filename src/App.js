@@ -11,9 +11,13 @@ import Footer from "./components/Footer/Footer";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser, signout} from "./redux/slices/authSlice";
+import {fetchUser, signOut} from "./redux/slices/authSlice";
 import CartOptionsDialog from './components/CartOptionsDialog/CartOptionsDialog';
-import {handleCartOptions} from "./redux/slices/cartSlice"; // Import the dialog component
+import {handleCartOptions} from "./redux/slices/cartSlice";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
+import OrderPage from "./pages/OrderPage/OrderPage";
+import ManagePage from "./pages/ManagePage/ManagePage";
 const App = () => {
     const location = useLocation();
     const routes = [
@@ -23,7 +27,12 @@ const App = () => {
         {path: '/signin', element: <SignInPage/>},
         {path: '/register', element: <RegisterPage/>},
         {path: '/cart', element: <CartPage/>},
-        {path: '/checkout', element: <CheckoutPage/>},
+        {path: '/checkout/:cartId', element: <CheckoutPage/>},
+        {path: '/checkout/success', element: <SuccessPage/>},
+        {path: '/account/orders', element: <OrderPage/>},
+        {path: '/account/manage', element: <ManagePage/>},
+        {path: '*', element: <NotFoundPage/>},
+
     ];
     const element = useRoutes(routes);
     const shouldHideNavbar = location.pathname === '/signin' || location.pathname === '/register';
@@ -47,7 +56,7 @@ const App = () => {
             dispatch(fetchUser());
         }
         const clearUser = () => {
-            dispatch(signout());
+            dispatch(signOut());
         };
 
         window.addEventListener('clearUser', clearUser);
@@ -69,7 +78,6 @@ const App = () => {
             {!shouldHideNavbar && <footer><Footer/></footer>}
             {showCartOptionsDialog && (
                 <CartOptionsDialog
-                    onClose={() => setShowCartOptionsDialog(false)}
                     onSelect={handleCartOptionsSelection}
                 />
             )}

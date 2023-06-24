@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './LanguageDropdown.module.css';
 import englishFlag from '../../assets/images/flags/english.png';
 import arabicFlag from '../../assets/images/flags/arabic.png';
-import i18n from '../../translation/i18n'
+import i18n from '../../translation/i18n';
 
 const LanguageDropdown = ({isRtl, onLanguageChange}) => {
+    const dropdownRef = useRef(null);
     const languages = [
         {value: 'en', flag: englishFlag},
         {value: 'ar', flag: arabicFlag},
@@ -27,9 +28,22 @@ const LanguageDropdown = ({isRtl, onLanguageChange}) => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        const checkIfClickedOutside = (e) => {
+            if (isOpen && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', checkIfClickedOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', checkIfClickedOutside);
+        };
+    }, [isOpen]);
 
     return (
-        <div className={styles.languageDropdown}>
+        <div className={styles.languageDropdown} ref={dropdownRef}>
             <button className={styles.languageBtn} onClick={handleToggleDropdown}>
                 <img src={selectedLanguage.flag} alt={selectedLanguage.value}/>
             </button>

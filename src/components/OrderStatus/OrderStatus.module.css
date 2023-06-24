@@ -1,0 +1,34 @@
+.pending {
+    background-color: #f6e05e;
+    color: #444444;
+}
+
+.cancelled {
+    background-color: #e53e3e;
+    color: white;
+}
+
+.delivered {
+    background-color: #48bb78;
+    color: white;
+}
+
+.confirmed {
+    background-color: #63b3ed;
+    color: white;
+}
+
+.shipped {
+    background-color: #94e1c7;
+    color: white;
+}
+
+.card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.rtl {
+    direction: rtl;
+}

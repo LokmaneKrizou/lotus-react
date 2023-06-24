@@ -19,7 +19,7 @@
     font-weight: bold;
 }
 
-.priceBreakdown button {
+.priceBreakdownButton {
     width: 100%;
     margin-top: 10px;
     padding: 12px 18px;
@@ -33,7 +33,7 @@
     transition: background-color 0.3s;
 }
 
-.priceBreakdown button:disabled {
+.priceBreakdownButton:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
