@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import store from './redux/store';
+import store from './common/redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import i18n from './translation/i18n';

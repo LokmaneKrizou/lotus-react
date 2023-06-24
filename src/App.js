@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {useRoutes, useLocation} from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import HomePage from './pages/HomePage/HomePage';
-import SearchPage from './pages/SearchPage/SearchPage';
-import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
-import CartPage from './pages/CartPage/CartPage';
-import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
+import Navbar from './common/components/Navbar/Navbar';
+import HomePage from './features/home/page/HomePage';
+import SearchPage from './features/search/page/SearchPage';
+import ProductDetailsPage from './features/product/page/ProductDetailsPage';
+import CartPage from './features/cart/page/CartPage';
+import CheckoutPage from './features/checkout/pages/CheckoutPage';
 import styles from './App.module.css';
-import Footer from "./components/Footer/Footer";
-import SignInPage from "./pages/SignInPage/SignInPage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import Footer from "./common/components/Footer/Footer";
+import SignInPage from "./features/account/sign/page/SignInPage/SignInPage";
+import RegisterPage from "./features/account/sign/page/RegisterPage/RegisterPage";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser, signOut} from "./redux/slices/authSlice";
-import CartOptionsDialog from './components/CartOptionsDialog/CartOptionsDialog';
-import {handleCartOptions} from "./redux/slices/cartSlice";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import SuccessPage from "./pages/SuccessPage/SuccessPage";
-import OrderPage from "./pages/OrderPage/OrderPage";
-import ManagePage from "./pages/ManagePage/ManagePage";
+import {fetchUser, signOut} from "./features/account/sign/redux/authSlice";
+import CartOptionsDialog from './features/cart/components/CartOptionsDialog/CartOptionsDialog';
+import {handleCartOptions} from "./features/cart/redux/cartSlice";
+import NotFoundPage from "./common/pages/NotFoundPage/NotFoundPage";
+import SuccessPage from "./features/checkout/pages/postCheckout/SuccessPage";
+import OrderPage from "./features/order/page/OrderPage";
+import ManagePage from "./features/account/manage/page/ManagePage/ManagePage";
 const App = () => {
     const location = useLocation();
     const routes = [
@@ -28,7 +28,7 @@ const App = () => {
         {path: '/register', element: <RegisterPage/>},
         {path: '/cart', element: <CartPage/>},
         {path: '/checkout/:cartId', element: <CheckoutPage/>},
-        {path: '/checkout/success', element: <SuccessPage/>},
+        {path: '/checkout/postCheckout', element: <SuccessPage/>},
         {path: '/account/orders', element: <OrderPage/>},
         {path: '/account/manage', element: <ManagePage/>},
         {path: '*', element: <NotFoundPage/>},
