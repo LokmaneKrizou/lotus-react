@@ -7,6 +7,7 @@ import CategoriesList from '../components/CategoriesList/CategoriesList';
 import ProductsList from '../../product/components/ProductsList/ProductsList';
 import TrendingProduct from '../components/TrendingProduct/TrendingProduct';
 import styles from './HomePage.module.css'
+import Divider from "../../../common/components/Divider/Divider";
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -25,9 +26,9 @@ const HomePage = () => {
             <CategoriesList/>
             <div className={styles.body}>
                 <TrendingProduct isRtl={isRtl}/>
-                <div className={styles.divider}></div>
+                <Divider/>
                 <ProductsList products={mostSearchedProducts} header={"Most Searched Products"}/>
-                <div className={styles.divider}></div>
+                <Divider/>
                 <ProductsList products={newArrivalProducts} header={"New Arrivals"}/>
             </div>
         </div>

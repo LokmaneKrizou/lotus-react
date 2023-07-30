@@ -1,0 +1,38 @@
+
+.label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.error {
+    color: #e53e3e;
+    margin-bottom: 1rem;
+}
+.inputField {
+    margin-top: 5px;
+    width: 100%;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+.registerButton {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #313131;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.registerButton:hover {
+    background-color: #151515;
+}

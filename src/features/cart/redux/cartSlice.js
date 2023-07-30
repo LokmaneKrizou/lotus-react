@@ -1,7 +1,7 @@
 // src/redux/slices/cartSlice.js
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import api from '../../../common/api';
-import {logoutSuccess} from "../../account/sign/redux/authSlice";
+import {logoutSuccess} from "../../account/redux/authSlice";
 
 const initialState = {
     cart: {

@@ -1,0 +1,49 @@
+.managePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #ffffff;
+}
+
+.manageContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-width: min-content;
+    width: 70%;
+    flex: 1 1 auto;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    text-decoration: none;
+    color: #000;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.description {
+    font-size: 14px;
+    margin: 0 0 20px 0;
+}
+
+@media screen and (max-width: 1190px) {
+    .manageContent {
+        width: 100%;
+    }
+}

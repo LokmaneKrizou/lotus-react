@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { signOut } from '../../../features/account/sign/redux/authSlice';
+import { signOut } from '../../../account/redux/authSlice';
 import styles from './AccountDropdown.module.css';
 
 const AccountDropdown = () => {

@@ -26,6 +26,7 @@ const StatusFilter = ({selectedStatus, onStatusChange}) => {
         <div className={`${styles.statusFilter} ${rtlStyles}`}>
             {statuses.map((status, index) => (
                 <StatusChip
+                    key={`${status.name}-${index}`}
                     status={status}
                     selectedStatus={selectedStatus}
                     onStatusChange={onStatusChange}

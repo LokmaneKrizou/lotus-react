@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {login} from "../../redux/authSlice";
+import {login} from "../../../redux/authSlice";
 import styles from "./SignInForm.module.css";
 
 const SignInForm = () => {

@@ -1,9 +1,11 @@
 .orderCard {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 5px 20px;
     background: white;
     margin-top: 5px;
     border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header {
@@ -23,11 +25,10 @@
     align-items: center;
 }
 .orderId{
-    font-size: 12px ;
+    font-size: 14px ;
 }
 .cancelButton{
-    margin-top: 10px;
-    margin-left: auto;
+    display: flex;
     padding: 10px 10px;
     font-size: 12px;
     height: fit-content;
@@ -37,9 +38,14 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    visibility: visible;
+    pointer-events: auto;
     transition: background-color 0.3s;
 }
-
+.cancelButton.hidden{
+    visibility: hidden;
+    pointer-events: none;
+}
 .cancelButton:hover {
     background-color: #000;
     transform: scale(1.05);

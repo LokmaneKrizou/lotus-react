@@ -1,8 +1,6 @@
 .dropdownContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
-
 }
 
 .dropdownLabel {
@@ -18,7 +16,7 @@
 
 .dropdown {
     width: 100%;
-    padding: 14px;
+    padding: 14px 30px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;

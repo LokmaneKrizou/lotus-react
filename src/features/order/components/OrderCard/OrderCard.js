@@ -13,11 +13,9 @@ const OrderCard = ({order, handleCancel}) => {
                     <h4>Order:</h4>
                     <p className={styles.orderId}>{order._id}</p>
                 </div>
-                {order.status === 'Pending' && (
-                    <button className={styles.cancelButton} onClick={() => handleCancel(order._id)}>
-                        Cancel
-                    </button>
-                )}
+                <button className={`${styles.cancelButton} ${order.status !== 'Pending' ? styles.hidden : ''}`} onClick={() => handleCancel(order._id)}>
+                    Cancel
+                </button>
             </div>
             <OrderItems items={order.items}/>
             <div className={styles.header}>

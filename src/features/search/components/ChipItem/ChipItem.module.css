@@ -1,0 +1,15 @@
+.chipItem {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    font-size: small;
+    border-radius: 25px; /* This will make the chip rounded */
+    transition: background-color 0.3s ease;
+}
+
+.chipItem.selected {
+    background-color: #941459;
+}

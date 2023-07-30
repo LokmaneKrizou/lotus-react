@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getCartById, getMyCart} from "../../redux/cartSlice";
+import {getCartById, getMyCart} from "../../../cart/redux/cartSlice";
 import styles from './CartBadge.module.css';
 
 const CartBadge = () => {

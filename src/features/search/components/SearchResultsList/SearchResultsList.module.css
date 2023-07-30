@@ -1,0 +1,128 @@
+.searchContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.searchResultsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 2;
+
+}
+
+.searchResults {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.searchFilters {
+    display: none;
+    width: 100%;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchFilters.show {
+    display: flex;
+}
+
+.clearButton {
+    display: none;
+}
+
+.applyButton,
+.filterButton {
+    display: none;
+}
+
+.applyButton,
+.filterButton.hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.applyButton,
+.filterButton:hover {
+    background-color: #000;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.searchFiltersModal {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    margin: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .searchContainer {
+        flex-direction: column;
+    }
+
+    .clearButton {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .applyButton,
+    .filterButton {
+        display: flex;
+        padding: 10px 10px;
+        justify-content: center;
+        margin: 10px;
+        font-size: 12px;
+        height: fit-content;
+        font-weight: bold;
+        background-color: #313131;
+        color: #ffffff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        visibility: visible;
+        pointer-events: auto;
+        transition: background-color 0.3s;
+    }
+
+    .searchFilters {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 9999;
+        background-color: white;
+        justify-content: center;
+        overflow: auto;
+    }
+}
+
+@media screen and (max-width: 648px) {
+    .searchResults {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        gap: 10px;
+    }
+
+}
+
+@media screen and (min-width: 769px) {
+    .searchFilters {
+        display: block;
+        flex: 0;
+    }
+}
+
+@media screen and (max-width: 1190px) and (min-width: 648px) {
+    .searchResults {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+}

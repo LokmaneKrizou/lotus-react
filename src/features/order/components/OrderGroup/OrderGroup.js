@@ -4,19 +4,19 @@ import React from 'react';
 import OrderCard from "../OrderCard/OrderCard";
 import styles from './OrderGroup.module.css'
 import OrderStatus from "../OrderStatus/OrderStatus";
-
-const OrderGroup = ({groupName, orders, cancelOrder}) => {
+const OrderGroup = ({orders, cancelOrder}) => {
     return (
-        <div className={styles.orderGroup} >
-            <h2 className={styles.groupName}>{groupName}</h2>
+        <div className={styles.orderGroup}>
             {orders.map((order) => (
-                <div className={styles.order}>
-                    <OrderStatus status={order.status}/>
-                    <OrderCard key={order._id} order={order} handleCancel={cancelOrder}/>
-                </div>
-            ))}
+                    <div key={order._id} className={styles.order}>
+                        <OrderStatus status={order.status}/>
+                        <OrderCard order={order} handleCancel={cancelOrder}/>
+                    </div>
+                )
+            )}
         </div>
-    );
+    )
+        ;
 };
 
 export default OrderGroup;

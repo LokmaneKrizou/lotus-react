@@ -4,11 +4,11 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBasketShopping, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {useSelector, useDispatch} from 'react-redux';
 import LanguageDropdown from '../LanguageDropdown/LanguageDropdown';
-import {toggleRtl} from '../../redux/slices/rtlSlice';
+import {toggleRtl} from '../../redux/rtlSlice';
 import {useTranslation} from 'react-i18next';
 import {useEffect, useState} from 'react';
-import {setSearchTerm} from '../../../features/search/redux/searchSlice';
-import CartBadge from '../../../features/cart/components/CartBadge/CartBadge';
+import {setSearchTerm} from '../../../search/redux/searchSlice';
+import CartBadge from '../CartBadge/CartBadge';
 import AccountDropdown from "../AccountDropdown/AccountDropdown";
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        if (inputSearchTerm.trim()) {
+        if (inputSearchTerm.trim() && inputSearchTerm.trim() !== searchTerm) {
             dispatch(setSearchTerm(inputSearchTerm));
             navigate(`/search/${inputSearchTerm}`);
         }
@@ -72,10 +72,10 @@ const Navbar = () => {
                         }
                     />
                     <Link to="/cart">
-                    <button className={styles.bagBtn}>
-                        <FontAwesomeIcon icon={faBasketShopping} size={"xl"} fillOpacity={0}/>
-                        <CartBadge/>
-                    </button>
+                        <button className={styles.bagBtn}>
+                            <FontAwesomeIcon icon={faBasketShopping} size={"xl"} fillOpacity={0}/>
+                            <CartBadge/>
+                        </button>
                     </Link>
                 </div>
             </div>

@@ -1,0 +1,33 @@
+
+.sortContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+    flex: 1;
+}
+
+.sortDropDown,
+.categoryDropDown {
+    width: 100%;
+}
+
+.priceRange {
+    width: 100%;
+}
+
+.variantCheckboxGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .sortContainer {
+        width: unset;
+    }
+
+    .sortDropDown {
+        width: 100%;
+    }
+}

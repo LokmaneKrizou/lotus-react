@@ -45,9 +45,7 @@ const productDetailsSlice = createSlice({
     reducers: {
         setVariantOption: (state, action) => {
             const {variantName, selectedOption} = action.payload;
-            console.log(variantName, selectedOption)
             const index = state.variantSelections.findIndex(variant => variant.name === variantName)
-            console.log(index)
             if (index === -1) {
                 state.variantSelections.push({name: variantName, value: selectedOption})
             } else {

@@ -1,26 +1,24 @@
 import React from 'react';
-import styles from './ProductCard.module.css';
 import {Link} from "react-router-dom";
 import useCurrencyFormatter from "../../../../util/priceFormatter";
+import styles from './ProductCard.module.css';
 
-const ProductCard = React.forwardRef(({product, isRtl, className}, ref) => {
-    const {_id, title, images, price} = product;
+const ProductCard = React.forwardRef(({product, isRtl}, ref) => {
+    const { _id, title: productTitle, images, price: productPrice } = product;
     const rtlStyles = isRtl ? styles.rtl : '';
-    const priceFormatter = useCurrencyFormatter();
     return (
         <div ref={ref} className={`${styles.productCard} ${rtlStyles}`}>
-            <Link to={`/product/${_id}`} target="_blank" className={styles.productLink}>
+            <Link to={`/product/${_id}`} className={styles.productLink}>
                 <div className={styles.productImage}>
-                    <img src={images[0]} alt={title}/>
+                    <img src={images[0]} alt={productTitle}/>
                 </div>
                 <div className={styles.productInfo}>
                     <div>
-                        <h3 className={styles.title}>{title}</h3>
-                        {/*<p className={styles.description}>{description}</p>*/}
-                        <p className={styles.price}>{priceFormatter(price)}</p>
+                        <h3 className={styles.title}>{productTitle}</h3>
+                        <p className={styles.price}>{useCurrencyFormatter()(productPrice)}</p>
                     </div>
+                    <button className={styles.addToCartButton}>Add to Cart</button>
                 </div>
-                <button className={styles.addToCartButton}>Add to Cart</button>
             </Link>
         </div>
     );

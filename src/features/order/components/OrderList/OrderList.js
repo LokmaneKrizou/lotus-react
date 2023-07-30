@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from './OrderList.module.css';
 import StatusFilter from "../StatusFilter/StatusFilter";
 import OrderGroups from "../OrderGroups/OrderGroups";
+import emptyOrders from "../../../../assets/images/emptyState/order_empty.svg";
 
 
 const OrderList = ({orders, cancelOrder}) => {
@@ -22,7 +23,14 @@ const OrderList = ({orders, cancelOrder}) => {
     return (
         <div className={styles.orderList}>
             <StatusFilter selectedStatus={selectedStatus} onStatusChange={handleStatusChange}/>
-            <OrderGroups orders={filteredOrders} cancelOrder={cancelOrder}/>
+            {filteredOrders && filteredOrders.length > 0 ?
+                <OrderGroups orders={filteredOrders} cancelOrder={cancelOrder}/>
+                : <div className={styles.emptyView}>
+                    <img src={emptyOrders} alt="Empty Orders"/>
+                    <h2>No Orders with {selectedStatus} status yet</h2>
+                    <p> Please check back later, if you think there is a mistake please contact us.</p>
+                </div>
+            }
         </div>
     );
 };

@@ -1,0 +1,8 @@
+.wrappedChipGroup{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.chips{
+    margin-bottom: 10px;
+}

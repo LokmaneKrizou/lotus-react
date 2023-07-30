@@ -4,8 +4,12 @@ import React from 'react';
 import OrderGroup from "../OrderGroup/OrderGroup";
 import moment from "moment";
 import styles from './OrderGroups.module.css'
-
-const groupOrders = (orders) => {
+import ExpandableSection from "../../../../common/components/ExtandableSection/ExtandableSection";
+import {useSelector} from "react-redux";
+import 'moment/locale/ar';
+const groupOrders = (orders, isRtl) => {
+    const local = isRtl ? "ar" : "en"
+    moment.locale(local);
     const today = moment().startOf('day');
     const yesterday = moment().subtract(1, 'day').startOf('day');
 
@@ -14,9 +18,9 @@ const groupOrders = (orders) => {
         let group;
 
         if (orderDate.isSame(today, 'd')) {
-            group = 'Today';
+            group = moment().format('LL');  // Localized 'Today'
         } else if (orderDate.isSame(yesterday, 'd')) {
-            group = 'Yesterday';
+            group = moment().subtract(1, 'day').format('LL');  // Localized 'Yesterday'
         } else {
             group = orderDate.format('MMMM YYYY'); // Group by month and year
         }
@@ -27,14 +31,25 @@ const groupOrders = (orders) => {
         return groups;
     }, {});
 };
-const OrderGroups = ({ orders, cancelOrder }) => {
-    const groupedOrders = groupOrders(orders);
+
+const OrderGroups = ({orders, cancelOrder}) => {
+    const isRtl = useSelector((state) => state.rtl.isRtl);
+    const groupedOrders = groupOrders(orders, isRtl);
 
     return (
         <div className={styles.orderGroups}>
-            {Object.keys(groupedOrders).map((group) => (
-                <OrderGroup key={group} groupName={group} orders={groupedOrders[group]} cancelOrder={cancelOrder} />
-            ))}
+            {Object.keys(groupedOrders).map((group, index) => (
+                <ExpandableSection
+                    key={`${group}-${index}`}
+                    initialState={index === 0}
+                    title={group}
+                    children={
+                        <OrderGroup key={`${group}-${index}-group`} orders={groupedOrders[group]}
+                                    cancelOrder={cancelOrder}/>
+                    }
+                />
+            ))
+            }
         </div>
     );
 };

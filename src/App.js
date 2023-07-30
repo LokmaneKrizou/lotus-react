@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useRoutes, useLocation} from 'react-router-dom';
-import Navbar from './common/components/Navbar/Navbar';
+import Navbar from './features/navbar/components/Navbar/Navbar';
 import HomePage from './features/home/page/HomePage';
 import SearchPage from './features/search/page/SearchPage';
 import ProductDetailsPage from './features/product/page/ProductDetailsPage';
@@ -11,13 +11,13 @@ import Footer from "./common/components/Footer/Footer";
 import SignInPage from "./features/account/sign/page/SignInPage/SignInPage";
 import RegisterPage from "./features/account/sign/page/RegisterPage/RegisterPage";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser, signOut} from "./features/account/sign/redux/authSlice";
+import {fetchUser, signOut} from "./features/account/redux/authSlice";
 import CartOptionsDialog from './features/cart/components/CartOptionsDialog/CartOptionsDialog';
 import {handleCartOptions} from "./features/cart/redux/cartSlice";
 import NotFoundPage from "./common/pages/NotFoundPage/NotFoundPage";
 import SuccessPage from "./features/checkout/pages/postCheckout/SuccessPage";
 import OrderPage from "./features/order/page/OrderPage";
-import ManagePage from "./features/account/manage/page/ManagePage/ManagePage";
+import ManagePage from "./features/account/manage/page/ManagePage";
 const App = () => {
     const location = useLocation();
     const routes = [

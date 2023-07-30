@@ -7,7 +7,7 @@ import styles from './Delivery.module.css';
 import Checkbox from "../../../../common/components/CheckBox/CheckBox";
 import Select from "../../../../common/components/Select/Select";
 
-const Delivery = () => {
+const Delivery = ({setDefault, saveDefault}) => {
     const dispatch = useDispatch();
     const deliveryAddresses = useSelector(state => state.checkout.deliveryAddresses);
     const user = useSelector((state) => state.auth.user)
@@ -22,7 +22,6 @@ const Delivery = () => {
     }, [dispatch]);
     useEffect(() => {
         if (user && user.address && deliveryAddresses.length > 0) {
-            console.log("Called")
             const newCountry = deliveryAddresses.find(country => country.country === user.address.country);
             setSelectedCountry(newCountry || {});
             if (newCountry !== undefined) {
@@ -73,12 +72,31 @@ const Delivery = () => {
 
     const handleStreetAndDeliveryInstructions = (event) => {
         setSelectedStreet(event.target.value)
-        dispatch(updateDeliveryAddress({
+        const address = {
+            country: selectedCountry.country,
+            state: selectedState.state,
+            city: selectedCity.city,
+            street: event.target.value
+        }
+        dispatch(updateDeliveryAddress(address));
+    }
+    const submit = () => {
+        const address = {
             country: selectedCountry.country,
             state: selectedState.state,
             city: selectedCity.city,
             street: selectedStreet
-        }));
+        }
+
+        if (saveDefault && user && address.country && address.city && address.street && address.state) {
+            const userAddress = user.address;
+            const hasAddressChanged = userAddress ? Object.keys(address).some(key => userAddress[key] !== address[key]) : true;
+            if (hasAddressChanged) {
+                saveDefault(address)
+            }
+        }
+
+        setExpanded(false)
     }
     return (
         <div className={styles.delivery}>
@@ -126,13 +144,15 @@ const Delivery = () => {
                                    onChange={handleStreetAndDeliveryInstructions}/>
                         </div>
                     )}
-                    {selectedCity.city && user && (
-                        <Checkbox
-                            text="Set as default address" checked={defaultAddress}
-                            onChange={handleDefaultAddressChange}
-                        />
-                    )}
-                    <button className={styles.deliveryButton} onClick={() => setExpanded(false)}>Save</button>
+                    {setDefault ? null :
+                        selectedCity.city && user && (
+                            <Checkbox
+                                text="Set as default address" checked={defaultAddress}
+                                onChange={handleDefaultAddressChange}
+                            />
+                        )
+                    }
+                    <button className={styles.deliveryButton} onClick={() => submit()}>Save</button>
                 </div>
             ) : (
                 <div className={styles.selectedAddress}>

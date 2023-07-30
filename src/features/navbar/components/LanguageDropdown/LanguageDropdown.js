@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './LanguageDropdown.module.css';
-import englishFlag from '../../../assets/images/flags/english.png';
-import arabicFlag from '../../../assets/images/flags/arabic.png';
-import i18n from '../../../translation/i18n';
+import englishFlag from '../../../../assets/images/flags/english.png';
+import arabicFlag from '../../../../assets/images/flags/arabic.png';
+import i18n from '../../../../translation/i18n';
 
 const LanguageDropdown = ({isRtl, onLanguageChange}) => {
     const dropdownRef = useRef(null);

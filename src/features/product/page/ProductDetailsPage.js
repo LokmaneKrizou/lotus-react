@@ -83,9 +83,11 @@ const ProductDetailsPage = () => {
                     <h2>{priceFormatter(product.price)}</h2>
                     <pre>{product.description}</pre>
                     <div className={styles.dropdownsWrapper}>
-                        {product.variants ? product.variants.map(variant => {
+                        {product.variants ? product.variants.map((variant, index) => {
                                 return (variant.options && variant.options.length > 1) ?
                                     <DropDown
+                                        className={styles.sortDropDown}
+                                        key={`${variant.name}-${index}`}
                                         label={variant.name}
                                         options={variant.options.map(option => option.value)}
                                         onChange={(selectedOption) => dispatch(setVariantOption({
@@ -93,11 +95,13 @@ const ProductDetailsPage = () => {
                                             selectedOption
                                         }))}
 
-                                    /> : null
+                                    /> :
+                                null
                             })
                             : null
                         }
                         <DropDown
+                            className={styles.sortDropDown}
                             label="Quantity"
                             options={[...Array(product.totalQuantity > 10 ? 10 : product.totalQuantity).keys()].map((n) => n + 1)}
                             onChange={(value) => dispatch(setQuantity(Number(value)))}

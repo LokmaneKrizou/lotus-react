@@ -30,7 +30,7 @@ const checkoutSlice = createSlice({
         error: null,
     },
     reducers: {
-        updateStatus:(state,action)=>{
+        updateStatus: (state, action) => {
             state.status = 'idle';
         },
         updateClientInfo: (state, action) => {
@@ -41,11 +41,11 @@ const checkoutSlice = createSlice({
         },
         updateCartItems: (state, action) => {
             const cartItems = action.payload;
-            let price= 0
+            let price = 0
             cartItems.forEach(item => {
                 price += item.product.price * item.quantity;
             });
-            state.totalPrice=price
+            state.totalPrice = price
             state.cartItems = cartItems;
         },
         updateDefaultAddress: (state, action) => {
@@ -84,6 +84,12 @@ const checkoutSlice = createSlice({
     },
 });
 
-export const {updateClientInfo, updateDeliveryAddress, updateCartItems,updateStatus,updateDefaultAddress} = checkoutSlice.actions;
+export const {
+    updateClientInfo,
+    updateDeliveryAddress,
+    updateCartItems,
+    updateStatus,
+    updateDefaultAddress
+} = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;
