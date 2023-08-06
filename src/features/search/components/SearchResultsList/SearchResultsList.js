@@ -12,7 +12,7 @@ const SearchResultsList = ({isRtl, searchTerm}) => {
     const pageInfo = useSelector((state) => state.search.pageInfo);
     const filteredProducts = useSelector(selectSortedAndFilteredProducts);
     const observer = useRef(null);
-    const [showFilters, setShowFilters] = useState(false);
+    // const [showFilters, setShowFilters] = useState(false);
 
     const lastProductElementRef = useCallback(node => {
         if (observer.current) observer.current.disconnect();
@@ -26,16 +26,17 @@ const SearchResultsList = ({isRtl, searchTerm}) => {
 
     return (
         <div className={styles.searchContainer}>
-            <button className={styles.filterButton} onClick={() => setShowFilters(!showFilters)}>Filters</button>
-            <div className={showFilters ? `${styles.searchFilters} ${styles.show}` : styles.searchFilters}>
-                <div className={styles.searchFiltersModal}>
-                    <div className={styles.clearButton}>
-                        <button className={styles.applyButton} onClick={() => setShowFilters(false)}>Clear</button>
-                    </div>
-                    <SearchFilters/>
-                    <button className={styles.applyButton} onClick={() => setShowFilters(false)}>Apply</button>
-                </div>
-            </div>
+            {/*TODO improve Filters for phase 2*/}
+            {/*<button className={styles.filterButton} onClick={() => setShowFilters(!showFilters)}>Filters</button>*/}
+            {/*<div className={showFilters ? `${styles.searchFilters} ${styles.show}` : styles.searchFilters}>*/}
+            {/*    <div className={styles.searchFiltersModal}>*/}
+            {/*        <div className={styles.clearButton}>*/}
+            {/*            <button className={styles.applyButton} onClick={() => setShowFilters(false)}>Clear</button>*/}
+            {/*        </div>*/}
+            {/*        <SearchFilters/>*/}
+            {/*        <button className={styles.applyButton} onClick={() => setShowFilters(false)}>Apply</button>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <div className={styles.searchResultsContainer}>
                 <div className={styles.searchResults}>
                     {filteredProducts.map((product, index) => {

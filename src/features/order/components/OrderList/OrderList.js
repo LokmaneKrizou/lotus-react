@@ -3,6 +3,7 @@ import styles from './OrderList.module.css';
 import StatusFilter from "../StatusFilter/StatusFilter";
 import OrderGroups from "../OrderGroups/OrderGroups";
 import emptyOrders from "../../../../assets/images/emptyState/order_empty.svg";
+import ErrorView from "../../../../common/components/ErrorView/ErrorView";
 
 
 const OrderList = ({orders, cancelOrder}) => {
@@ -25,14 +26,16 @@ const OrderList = ({orders, cancelOrder}) => {
             <StatusFilter selectedStatus={selectedStatus} onStatusChange={handleStatusChange}/>
             {filteredOrders && filteredOrders.length > 0 ?
                 <OrderGroups orders={filteredOrders} cancelOrder={cancelOrder}/>
-                : <div className={styles.emptyView}>
-                    <img src={emptyOrders} alt="Empty Orders"/>
-                    <h2>No Orders with {selectedStatus} status yet</h2>
-                    <p> Please check back later, if you think there is a mistake please contact us.</p>
-                </div>
+                : <ErrorView
+                    image={emptyOrders}
+                    alt={"Empty Orders"}
+                    title={`No Orders with ${selectedStatus} status yet`}
+                    content={" Please check back later, if you think there is a mistake please contact us."}
+                />
             }
         </div>
-    );
+    )
+        ;
 };
 
 export default OrderList;

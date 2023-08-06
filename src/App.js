@@ -18,33 +18,35 @@ import NotFoundPage from "./common/pages/NotFoundPage/NotFoundPage";
 import SuccessPage from "./features/checkout/pages/postCheckout/SuccessPage";
 import OrderPage from "./features/order/page/OrderPage";
 import ManagePage from "./features/account/manage/page/ManagePage";
+
 const App = () => {
-    const location = useLocation();
-    const routes = [
-        {path: '/', element: <HomePage/>},
-        {path: '/search/:searchTerm', element: <SearchPage/>},
-        {path: '/product/:productId', element: <ProductDetailsPage/>},
-        {path: '/signin', element: <SignInPage/>},
-        {path: '/register', element: <RegisterPage/>},
-        {path: '/cart', element: <CartPage/>},
-        {path: '/checkout/:cartId', element: <CheckoutPage/>},
-        {path: '/checkout/postCheckout', element: <SuccessPage/>},
-        {path: '/account/orders', element: <OrderPage/>},
-        {path: '/account/manage', element: <ManagePage/>},
-        {path: '*', element: <NotFoundPage/>},
+    const components = [
+        {route: {path: '/', element: <HomePage/>}, shouldHideNavBar: false},
+        {route: {path: '/search/:searchTerm', element: <SearchPage/>}, shouldHideNavBar: false},
+        {route: {path: '/product/:productId', element: <ProductDetailsPage/>}, shouldHideNavBar: false},
+        {route: {path: '/signin', element: <SignInPage/>}, shouldHideNavBar: true},
+        {route: {path: '/register', element: <RegisterPage/>}, shouldHideNavBar: true},
+        {route: {path: '/cart', element: <CartPage/>}, shouldHideNavBar: false},
+        {route: {path: '/checkout/:cartId', element: <CheckoutPage/>}, shouldHideNavBar: true},
+        {route: {path: '/checkout/postCheckout', element: <SuccessPage/>}, shouldHideNavBar: true},
+        {route: {path: '/account/orders', element: <OrderPage/>}, shouldHideNavBar: false},
+        {route: {path: '/account/manage', element: <ManagePage/>}, shouldHideNavBar: false},
+        {route: {path: '*', element: <NotFoundPage/>}, shouldHideNavBar: false},
 
     ];
+    const routes = components.map(component => component.route)
     const element = useRoutes(routes);
-    const shouldHideNavbar = location.pathname === '/signin' || location.pathname === '/register';
+    const matchedComponent = components.find(component => component.route.path === element.props.match.route.path);
+    const shouldHideNavbar = matchedComponent ? matchedComponent.shouldHideNavBar : false;
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user)
     const [showCartOptionsDialog, setShowCartOptionsDialog] = useState(false);
     const handleCartOptionsSelection = async (option) => {
         console.log(option)
-        dispatch(handleCartOptions({ option }))
+        dispatch(handleCartOptions({option}))
         setShowCartOptionsDialog(false);
     };
-
+    console.log( element.props.match.route.path)
     const checkLocalCartAndHandleOptions = () => {
         const localCartId = localStorage.getItem('cartId');
         if (user && localCartId) {

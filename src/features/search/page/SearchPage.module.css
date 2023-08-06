@@ -1,9 +1,10 @@
 .searchPage {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 0.5rem;
     margin: 0 auto;
+    max-width: 1200px;
 }
 
 .loading{

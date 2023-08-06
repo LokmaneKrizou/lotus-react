@@ -18,34 +18,34 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const user = useSelector((state) => state.auth.user)
-    useEffect(() => {
-        const storedSearchTerm = localStorage.getItem('searchTerm');
-        if (storedSearchTerm) {
-            dispatch(setSearchTerm(storedSearchTerm));
-        }
-    }, [dispatch]);
 
+    const regex = /search\/(.+)/;
+
+    const searchTermFromPath = location.pathname.match(regex)?.[1] || '';
+    const [inputSearchTerm, setInputSearchTerm] = useState(searchTermFromPath || searchTerm);
+
+    const isRtl = useSelector((state) => state.rtl.isRtl);
+
+    const rtlStyles = isRtl ? styles.rtl : '';
     const handleSearch = (e) => {
         e.preventDefault();
-        if (inputSearchTerm.trim() && inputSearchTerm.trim() !== searchTerm) {
+        const isNotOnSearchPage = !location.pathname.startsWith('/search/');
+        if (inputSearchTerm.trim() && (isNotOnSearchPage || inputSearchTerm.trim() !== searchTerm)) {
             dispatch(setSearchTerm(inputSearchTerm));
             navigate(`/search/${inputSearchTerm}`);
         }
     };
 
-    const regex = /search\/(.+)/;
-    const searchTermFromPath = location.pathname.match(regex)?.[1] || '';
-
-    const [inputSearchTerm, setInputSearchTerm] = useState(searchTermFromPath || searchTerm);
-
-    const isRtl = useSelector((state) => state.rtl.isRtl);
-    const rtlStyles = isRtl ? styles.rtl : '';
-
+    const redirectToHomePage = () => {
+        setInputSearchTerm('')
+        dispatch(setSearchTerm(''));
+        navigate(`/`);
+    }
     return (
         <nav className={`${styles.navbar} ${rtlStyles}`}>
             <div className={styles.navbarContainer}>
                 <div className={styles.logo}>
-                    <Link to="/" onClick={(e) => setInputSearchTerm('')}>Lotus</Link>
+                    <Link to="/" onClick={redirectToHomePage}>Lotus</Link>
                 </div>
                 <form className={styles.searchForm} onSubmit={handleSearch}>
                     <input

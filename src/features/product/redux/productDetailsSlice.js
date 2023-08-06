@@ -1,5 +1,6 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, createSelector} from '@reduxjs/toolkit';
 import api from '../../../common/api';
+import {addItemToCartAction, addToCart} from "../../cart/redux/cartSlice";
 
 export const fetchProductDetails = createAsyncThunk(
     'productDetails/fetchProductDetails',
@@ -13,25 +14,20 @@ export const fetchProductDetails = createAsyncThunk(
     }
 );
 
-export const isAddToCartDisabled = (state) => {
-    const product = state.productDetails.product;
-    const quantity = state.productDetails.quantity;
-
-    if (!product) {
-        return true;
+export const addToCartAction = createAsyncThunk(
+    'productDetails/addToCart',
+    async (_, {dispatch, getState}) => {
+        const {productDetails} = getState();
+        const item = {
+            product: productDetails.product,
+            variantSelections: productDetails.variantSelections,
+            quantity: productDetails.quantity,
+        };
+        dispatch(addToCart(item));
+        const result = await dispatch(addItemToCartAction());
+        return result.success;
     }
-
-    const selectedProductVariant = product.productVariants.find(variant =>
-        variant.options.every(option =>
-            state.productDetails.variantSelections.some(selection =>
-                selection.name === option.name && selection.value === option.value
-            )
-        )
-    );
-    return !selectedProductVariant || quantity > selectedProductVariant.quantity;
-
-
-};
+);
 
 const productDetailsSlice = createSlice({
     name: "productDetails",
@@ -41,6 +37,8 @@ const productDetailsSlice = createSlice({
         error: null,
         variantSelections: [],
         quantity: 1,
+        selectedVariantQuantity: 10,
+        addToCartButtonLabel: 'Add to Cart'
     },
     reducers: {
         setVariantOption: (state, action) => {
@@ -51,13 +49,31 @@ const productDetailsSlice = createSlice({
             } else {
                 state.variantSelections[index].value = selectedOption;
             }
+
+            const selectedProductVariant = state.product.productVariants.find(variant =>
+                variant.options.every(option =>
+                    state.variantSelections.some(selection =>
+                        selection.name === option.name && selection.value === option.value
+                    )
+                )
+            );
+
+            state.selectedVariantQuantity = selectedProductVariant ? selectedProductVariant.quantity : state.product.totalQuantity;
+            state.addToCartButtonLabel = state.selectedVariantQuantity === 0 ? 'Sold Out' : 'Add to Cart';
         },
         setQuantity: (state, action) => {
             state.quantity = action.payload;
         },
+        toggleSideMenu: (state) => {
+            state.sideMenuVisible = !state.sideMenuVisible;
+        },
+        toggleErrorDialog: (state) => {
+            state.errorDialogVisible = !state.errorDialogVisible;
+        },
         resetSelection: (state) => {
             state.variantSelections = [];
             state.quantity = 1;
+            state.addToCartButtonLabel = 'Add to Cart';
         },
     },
     extraReducers: (builder) => {
@@ -73,6 +89,10 @@ const productDetailsSlice = createSlice({
             .addCase(fetchProductDetails.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload;
+            })
+            .addCase(addToCartAction.fulfilled, (state, action) => {
+                state.sideMenuVisible = action.payload;
+                state.errorDialogVisible = !action.payload;
             });
     }
 });
@@ -81,6 +101,42 @@ export const {
     setVariantOption,
     setQuantity,
     resetSelection,
+    toggleSideMenu,
+    toggleErrorDialog,
 } = productDetailsSlice.actions;
 
 export default productDetailsSlice.reducer;
+
+// Selectors
+const selectProductDetails = state => state.productDetails;
+
+export const selectSelectedVariantQuantity = createSelector(
+    [selectProductDetails],
+    productDetails => productDetails.selectedVariantQuantity
+);
+export const selectIsVariantSelected = createSelector(
+    [selectProductDetails],
+    (productDetails) => {
+        const {product, variantSelections} = productDetails;
+        if (!product || !product.variants) {
+            return false;
+        }
+        return product.variants.every(variant => variantSelections.some(selection => selection.name === variant.name));
+    }
+);
+export const selectIsAddToCartDisabled = createSelector(
+    [selectProductDetails, selectSelectedVariantQuantity, selectIsVariantSelected],
+    (productDetails, selectedVariantQuantity, isVariantSelected) => selectedVariantQuantity === 0 || productDetails.quantity > selectedVariantQuantity || !isVariantSelected
+);
+
+
+export const selectQuantityOptions = createSelector(
+    [selectSelectedVariantQuantity],
+    (selectedVariantQuantity) => [...Array(selectedVariantQuantity > 10 ? 10 : selectedVariantQuantity).keys()].map((n) => n + 1)
+);
+
+
+export const selectAddToCartButtonLabel = createSelector(
+    [selectProductDetails],
+    (productDetails) => productDetails.addToCartButtonLabel
+);

@@ -9,7 +9,7 @@ import TrendingProduct from '../components/TrendingProduct/TrendingProduct';
 import styles from './HomePage.module.css'
 import Divider from "../../../common/components/Divider/Divider";
 
-const HomePage = () => {
+const HomePage = ({id}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
