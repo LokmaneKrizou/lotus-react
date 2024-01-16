@@ -30,7 +30,7 @@ const Dialog = ({positive, negative, message, title, component, onClose}) => {
                     </div>
                 </div>
                 <div className={styles.closeDialog} onClick={onClose}>
-                    <FontAwesomeIcon icon={faClose} color={"#ffffff"}  size={"2xs"}/>
+                    <FontAwesomeIcon icon={faClose} color={"#ffffff"} size={"2xs"}/>
                 </div>
             </div>
         </div>

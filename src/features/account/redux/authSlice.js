@@ -104,8 +104,10 @@ export const fetchUser = () => async (dispatch) => {
             const user = await api.user.fetchUser();
             dispatch(fetchUserSuccess(user));
         } catch (error) {
-            console.error(error);
+            dispatch(loginFailure(error.response.data));
         }
+    } else {
+        dispatch(loginFailure(null));
     }
 };
 export const updateUser = (data) => async (dispatch) => {

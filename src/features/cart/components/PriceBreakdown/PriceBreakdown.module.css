@@ -5,7 +5,16 @@
     padding: 20px;
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1);
 }
-
+.signUpLink {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+.signUpLink a{
+    text-decoration: none;
+    color: #6c0d40;
+    font-weight: bold;
+}
 .priceBreakdown .row {
     display: flex;
     justify-content: space-between;

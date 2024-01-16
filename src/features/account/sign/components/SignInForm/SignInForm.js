@@ -18,7 +18,6 @@ const SignInForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password)
         dispatch(login({email, password}));
     };
     const handleEmailChange = (e) => setEmail(e.target.value);

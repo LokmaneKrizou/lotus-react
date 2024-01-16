@@ -43,7 +43,9 @@ const ImageSlideshow = ({images}) => {
                         </button> : null}
                 </div>
                 <div className={styles.containerItem}>
-                    <img src={images[selectedIndex]} alt={`Product image ${selectedIndex + 1}`}/>
+                    <div className={styles.aspectRatioBox}>
+                        <img src={images[selectedIndex]} alt={`Product image ${selectedIndex + 1}`} />
+                    </div>
                 </div>
                 <div className={styles.containerItem}>
                     {showSliderIndicator ?

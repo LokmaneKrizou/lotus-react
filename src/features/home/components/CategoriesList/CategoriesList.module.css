@@ -4,20 +4,27 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 .categoriesListHeader {
     font-size: 25px;
     text-align: center;
     font-weight: lighter;
-    margin: 20px;
     color: #5b5b5b;
 }
-.categoriesContainer{
+.categoriesBackground{
     width: 100%;
+    display: flex;
+    justify-content: center;
     background-image: linear-gradient(to bottom, rgb(215, 230, 245) 40%, transparent 90%);
 }
-
+.container{
+    max-width: 1200px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
 .rtl {
     direction: rtl;
 }

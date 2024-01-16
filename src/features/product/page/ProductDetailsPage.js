@@ -58,70 +58,63 @@ const ProductDetailsPage = () => {
     };
 
     if (!product || !similarProducts) return null;
-    return (
-        <div className={`${styles.productDetails} ${rtlStyles}`}>
-            <SideMenu
-                visible={productDetails.sideMenuVisible}
-                onClose={() => dispatch(toggleSideMenu())}
-                addedItem={productDetails}
-            />
-            <ErrorDialog
-                visible={maxQuantityDialogVisible}
-                onClose={() => setMaxQuantityDialogVisible(false)}
-                title="Quantity Error"
-                message={`The maximum quantity for the selected variant is ${selectedVariantQuantity}.`}
-            />
-            <ErrorDialog
-                visible={productDetails.errorDialogVisible}
-                onClose={() => dispatch(toggleErrorDialog())}
-                title="Error"
-                message="Failed to add item to cart."
-            />
-            <div className={styles.body}>
-                <ImageSlideShow images={product.images}/>
-                <div className={styles.productDescription}>
-                    <h1>{product.title}</h1>
-                    <h2>{priceFormatter(product.price)}</h2>
-                    <pre>{product.description}</pre>
-                    <div className={styles.dropdownsWrapper}>
-                        {product.variants ? product.variants.map((variant, index) => {
-                                return (variant.options && variant.options.length > 1) ?
-                                    <DropDown
-                                        className={styles.sortDropDown}
-                                        key={`${variant.name}-${index}`}
-                                        label={variant.name}
-                                        options={variant.options.map(option => option.value)}
-                                        onChange={(selectedOption) => dispatch(setVariantOption({
-                                            variantName: variant.name,
-                                            selectedOption
-                                        }))}
-
-                                    /> :
-                                    null
-                            })
-                            : null
-                        }
-                        <DropDown
+    return (<div className={`${styles.productDetails} ${rtlStyles}`}>
+        <SideMenu
+            visible={productDetails.sideMenuVisible}
+            onClose={() => dispatch(toggleSideMenu())}
+            addedItem={productDetails}
+        />
+        <ErrorDialog
+            visible={maxQuantityDialogVisible}
+            onClose={() => setMaxQuantityDialogVisible(false)}
+            title="Quantity Error"
+            message={`The maximum quantity for the selected variant is ${selectedVariantQuantity}.`}
+        />
+        <ErrorDialog
+            visible={productDetails.errorDialogVisible}
+            onClose={() => dispatch(toggleErrorDialog())}
+            title="Error"
+            message="Failed to add item to cart."
+        />
+        <div className={styles.body}>
+            <ImageSlideShow key={productId} images={product.images}/>
+            <div className={styles.productDescription}>
+                <h1>{product.title}</h1>
+                <h2>{priceFormatter(product.price)}</h2>
+                <pre>{product.description}</pre>
+                <div className={styles.dropdownsWrapper}>
+                    {product.variants ? product.variants.map((variant, index) => {
+                        return (variant.options && variant.options.length > 1) ? <DropDown
                             className={styles.sortDropDown}
-                            label="Quantity"
-                            options={quantityOptions}
-                            onChange={(value) => dispatch({type: 'productDetails/setQuantity', payload: Number(value)})}
-                            defaultValue={1}
-                        />
-                        <button
-                            className={`${styles.addToCartButton} ${addToCartDisabled ? styles.buttonDisabled : ''}`}
-                            onClick={handleAddToCart}
-                            disabled={addToCartDisabled}>
-                            {addToCartButtonLabel}
-                        </button>
-                    </div>
+                            key={`${variant.name}-${index}`}
+                            label={variant.name}
+                            options={variant.options.map(option => option.value)}
+                            onChange={(selectedOption) => dispatch(setVariantOption({
+                                variantName: variant.name, selectedOption
+                            }))}
+
+                        /> : null
+                    }) : null}
+                    <DropDown
+                        className={styles.sortDropDown}
+                        label="Quantity"
+                        options={quantityOptions}
+                        onChange={(value) => dispatch({type: 'productDetails/setQuantity', payload: Number(value)})}
+                        defaultValue={1}
+                    />
+                    <button
+                        className={`${styles.addToCartButton} ${addToCartDisabled ? styles.buttonDisabled : ''}`}
+                        onClick={handleAddToCart}
+                        disabled={addToCartDisabled}>
+                        {addToCartButtonLabel}
+                    </button>
                 </div>
             </div>
-            <div className={styles.similarProducts}>
-                <ProductsList products={similarProducts} header={"Similar Products"}/>
-            </div>
         </div>
-    );
+        <div className={styles.similarProducts}>
+            <ProductsList products={similarProducts} header={"Similar Products"}/>
+        </div>
+    </div>);
 };
 
 export default ProductDetailsPage;

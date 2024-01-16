@@ -43,7 +43,14 @@ const PriceBreakdown = () => {
                     message={"Create an account and keep records of all your orders, save your favourite items and more! "}
                     negative={negative}
                     onClose={()=>setDialogVisible(false)}
-                    component={<SignInForm/>}
+                    component={
+                    <div>
+                    <SignInForm/>
+                        <p className={styles.signUpLink}>
+                            You don't have an account? <a href="/register">Join Lotus family</a>
+                        </p>
+                    </div>
+                    }
                 /> : null}
             <div className={styles.row}>
                 <p>Subtotal</p>

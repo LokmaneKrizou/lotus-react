@@ -12,16 +12,17 @@ const CategoriesList = () => {
     }
 
     return (
-        <div className={styles.categoriesContainer}>
-            <p className={styles.categoriesListHeader}>
-                Incredible style and decor, plus one-of-a-kind gifts right this way!
-            </p>
-            <div className={styles.categoriesList}>
-                {categories.map((category) => (
-                    <CategoryCard key={category} category={category} />
-                ))}
+        <div className={styles.categoriesBackground}>
+            <div className={styles.container}>
+                <p className={styles.categoriesListHeader}>
+                    Incredible style and decor, plus one-of-a-kind gifts right this way!
+                </p>
+                <div className={styles.categoriesList}>
+                    {categories.map((category) => (
+                        <CategoryCard key={category} category={category}/>
+                    ))}
+                </div>
             </div>
-
         </div>
     );
 };

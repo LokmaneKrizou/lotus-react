@@ -4,5 +4,12 @@
     align-items: center;
     gap: 20px;
     justify-content: center; /* align vertically */
-    height: 50vh;
+    text-align: center;
+}
+
+/* For small screens */
+@media screen and (min-width: 700px) {
+    .emptyView {
+        height: 50vh;
+    }
 }

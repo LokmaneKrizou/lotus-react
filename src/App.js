@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useRoutes, useLocation} from 'react-router-dom';
+import {useLocation, useNavigate, useRoutes} from 'react-router-dom';
 import Navbar from './features/navbar/components/Navbar/Navbar';
 import HomePage from './features/home/page/HomePage';
 import SearchPage from './features/search/page/SearchPage';
@@ -18,10 +18,28 @@ import NotFoundPage from "./common/pages/NotFoundPage/NotFoundPage";
 import SuccessPage from "./features/checkout/pages/postCheckout/SuccessPage";
 import OrderPage from "./features/order/page/OrderPage";
 import ManagePage from "./features/account/manage/page/ManagePage";
+import Spinner from "./common/components/Spinner/Spinner";
+import DashboardPage from "./admin/features/dashboard/page/DashboardPage";
+import Role from "./admin/enums/role";
 
 const App = () => {
+
+    const authLoading = useSelector((state) => state.auth.loading)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const user = useSelector((state) => state.auth.user);
+    useEffect(() => {
+        if (user && (location.pathname === '/signin' || location.pathname === '/register')) {
+            navigate('/');
+        }
+        if (user && (user.role !== Role.ADMIN && user.role !== Role.EDITOR) && location.pathname === '/admin') {
+            navigate('/');
+        }
+    }, [user, navigate, location.pathname]);
+
     const components = [
         {route: {path: '/', element: <HomePage/>}, shouldHideNavBar: false},
+        {route: {path: '/admin/', element: <DashboardPage/>}, shouldHideNavBar: true},
         {route: {path: '/search/:searchTerm', element: <SearchPage/>}, shouldHideNavBar: false},
         {route: {path: '/product/:productId', element: <ProductDetailsPage/>}, shouldHideNavBar: false},
         {route: {path: '/signin', element: <SignInPage/>}, shouldHideNavBar: true},
@@ -39,14 +57,12 @@ const App = () => {
     const matchedComponent = components.find(component => component.route.path === element.props.match.route.path);
     const shouldHideNavbar = matchedComponent ? matchedComponent.shouldHideNavBar : false;
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user)
     const [showCartOptionsDialog, setShowCartOptionsDialog] = useState(false);
     const handleCartOptionsSelection = async (option) => {
         console.log(option)
         dispatch(handleCartOptions({option}))
         setShowCartOptionsDialog(false);
     };
-    console.log( element.props.match.route.path)
     const checkLocalCartAndHandleOptions = () => {
         const localCartId = localStorage.getItem('cartId');
         if (user && localCartId) {
@@ -67,7 +83,6 @@ const App = () => {
             window.removeEventListener('clearUser', clearUser);
         };
     }, []);
-
     useEffect(() => {
         checkLocalCartAndHandleOptions();
     }, [user])
@@ -75,7 +90,7 @@ const App = () => {
         <div className={styles.app}>
             {!shouldHideNavbar && <Navbar/>}
             <div>
-                {element}
+                {authLoading ? <div className={styles.loading}><Spinner/></div> : element}
             </div>
             {!shouldHideNavbar && <footer><Footer/></footer>}
             {showCartOptionsDialog && (
