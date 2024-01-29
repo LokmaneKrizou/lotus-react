@@ -1,0 +1,38 @@
+.orderTable {
+    width: 100%;
+    border-radius: 16px;
+    border-spacing: 0;
+}
+
+.orderTableHeader {
+    background-color: white;
+    padding: 16px 8px;
+    text-align: left;
+    color: #8B909A;
+    font-size: 15px;
+    font-family: 'Public Sans', Roboto, sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+.orderTable td {
+    border-top: 1px solid #EEECFDFF;
+}
+.orderTable td:first-child {
+    padding-left:16px;
+    padding-right:0;
+}
+.orderTable td:last-child {
+    padding-left:0;
+    padding-right:16px;
+}
+
+.orderTable th:first-child {
+    padding-left:16px;
+    padding-right:0;
+}
+.orderTable th:last-child {
+    padding-left:0;
+    padding-right:16px;
+}

@@ -19,8 +19,8 @@ import SuccessPage from "./features/checkout/pages/postCheckout/SuccessPage";
 import OrderPage from "./features/order/page/OrderPage";
 import ManagePage from "./features/account/manage/page/ManagePage";
 import Spinner from "./common/components/Spinner/Spinner";
-import DashboardPage from "./admin/features/dashboard/page/DashboardPage";
 import Role from "./admin/enums/role";
+import AdminPageRouteHandler from "./admin/base/AdminPageRouteHandler";
 
 const App = () => {
 
@@ -32,14 +32,14 @@ const App = () => {
         if (user && (location.pathname === '/signin' || location.pathname === '/register')) {
             navigate('/');
         }
-        if (user && (user.role !== Role.ADMIN && user.role !== Role.EDITOR) && location.pathname === '/admin') {
+        if (user && (user.role !== Role.ADMIN && user.role !== Role.EDITOR) && location.pathname === '/admin/:pageName') {
             navigate('/');
         }
     }, [user, navigate, location.pathname]);
 
     const components = [
         {route: {path: '/', element: <HomePage/>}, shouldHideNavBar: false},
-        {route: {path: '/admin/', element: <DashboardPage/>}, shouldHideNavBar: true},
+        {route: {path: '/admin/:pageName', element: <AdminPageRouteHandler/>}, shouldHideNavBar: true},
         {route: {path: '/search/:searchTerm', element: <SearchPage/>}, shouldHideNavBar: false},
         {route: {path: '/product/:productId', element: <ProductDetailsPage/>}, shouldHideNavBar: false},
         {route: {path: '/signin', element: <SignInPage/>}, shouldHideNavBar: true},

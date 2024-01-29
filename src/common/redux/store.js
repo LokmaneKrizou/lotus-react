@@ -9,6 +9,7 @@ import cartReducer from '../../features/cart/redux/cartSlice'
 import authReducer from '../../features/account/redux/authSlice'
 import checkoutReducer from '../../features/checkout/redux/checkoutSlice'
 import orderReducer from '../../features/order/redux/orderSLice'
+import ordersManagementReducer from '../../admin/features/orders/redux/orderManagmentSlice'
 
 const store = configureStore({
     reducer: {
@@ -21,7 +22,8 @@ const store = configureStore({
         cart: cartReducer,
         auth: authReducer,
         checkout: checkoutReducer,
-        order: orderReducer
+        order: orderReducer,
+        adminOrders:ordersManagementReducer,
 
     }
 });

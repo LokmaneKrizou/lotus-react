@@ -1,0 +1,115 @@
+.orderRow {
+    background-color: white;
+}
+
+.orderRowExpanded {
+    background-color: #F2F4F6;
+}
+
+/* Styling for each cell */
+.cell {
+    padding: 16px 8px;
+    color: #23272E;
+    line-height: 22px;
+    text-align: left;
+    word-wrap: break-word;
+    font-size: 15px;
+    font-family: 'Public Sans', Roboto, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.expandedRow {
+}
+
+.expandedRow td {
+    padding: 8px 30px !important;
+
+}
+
+.expandedRow th {
+    padding: 8px 30px !important;
+
+}
+
+.expandedRowTable {
+    width: 100%;
+    border-spacing: 0;
+}
+
+.additionalInfo {
+    padding: 20px;
+}
+
+.expandedRowTable td {
+    border-top: 1px solid #EEECFDFF;
+}
+
+.expandedCell {
+    padding: 16px 8px;
+    color: #23272E;
+    line-height: 22px;
+    text-align: left;
+    word-wrap: break-word;
+    font-size: 15px;
+    font-family: 'Public Sans', Roboto, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.expandedRowTable th {
+    padding: 16px 8px;
+    text-align: left;
+    color: #8B909A;
+    font-size: 13px;
+    font-family: 'Public Sans', Roboto, sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+.expandedRowTable td:first-child {
+    padding-left: 50px !important;;
+    padding-right: 0 !important;;
+}
+
+.expandedRowTable th:first-child {
+    padding-left: 45px !important;;
+    padding-right: 0 !important;;
+}
+
+.expandedRowTable img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.variantSelections {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.variantSelection {
+    display: flex;
+    flex-direction: column;
+}
+.selectionName{
+    color: #23272E;
+    /*line-height: 22px;*/
+    text-align: left;
+    word-wrap: break-word;
+    font-size: 10px;
+    font-family: 'Public Sans', Roboto, sans-serif;
+    /*font-weight: 300;*/
+    text-transform: uppercase;
+}
+.selectionValue{
+    text-align: left;
+    color: #5d5f65;
+    font-size: 13px;
+    font-family: 'Public Sans', Roboto, sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    word-wrap: break-word;
+
+}

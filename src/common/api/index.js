@@ -9,6 +9,7 @@ import {cartAPI} from "../../features/cart/api/cartAPI";
 import {productsAPI} from "../../features/product/api/productAPI";
 import {authAPI} from "../../features/account/api/authAPI";
 import {userAPI} from "../../features/account/api/userAPI";
+import {orderManagementAPI} from "../../admin/features/orders/api/orderManagementAPI";
 
 const API_BASE_URL = 'https://localhost:3000/';
 
@@ -34,6 +35,7 @@ const api = {
     auth: authAPI(apiClient),
     checkout: checkoutAPI(apiClient),
     order: orderAPI(apiClient),
+    ordersManagement: orderManagementAPI(apiClient),
     user: userAPI(apiClient),
     getDeliveryAddresses() {
         return [Algeria]

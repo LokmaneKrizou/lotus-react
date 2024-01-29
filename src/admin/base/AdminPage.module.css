@@ -1,0 +1,23 @@
+.adminPage {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    background: #FAFAFA;
+}
+
+.mainContent {
+    flex-grow: 1;
+    display: flex;
+    margin: 0 26px;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #FAFAFA; /* Example background color */
+    padding: 10px;
+    /* Add more styling as per your design */
+}
+
+.pageContent {
+    flex-grow: 1;
+    /* Add more styling as per your design */
+}

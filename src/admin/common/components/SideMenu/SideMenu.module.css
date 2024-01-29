@@ -1,0 +1,134 @@
+.sideMenu {
+    width: 260px;
+    background-color: #FFFFFF;
+    color: #23272E;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: width 0.3s ease-in-out;
+}
+
+.collapsed {
+    width: 80px;
+}
+
+.logoContainer {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    transition: padding 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Add transition effects */
+}
+
+.sideMenu.collapsed .logoContainer {
+    justify-content: center;
+    padding: 20px 48px; /* Adjust padding for the collapsed state */
+    /* Add any other style changes for the collapsed state here */
+}
+
+.collapseButton {
+    background: none;
+    border: none;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.menuSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px 30px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.menuLabel {
+    color: #8B909A;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 14px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    padding: 9px 16px;
+    color: #8B909A;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin: 8px 0;
+    gap: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menuItem:hover,
+.activeLink {
+    background-color: #F3F4F8;
+    color: #23272E;
+    font-weight: 600;
+}
+
+.icon {
+    transition: filter 0.3s;
+}
+
+.menuItem:hover .icon,
+.activeLink .icon {
+    filter: brightness(0) saturate(100%) invert(0.3); /* Example to change gray to black on hover */
+}
+
+.sideMenu.collapsed .menuItem {
+    justify-content: center;
+}
+
+.sideMenu.collapsed .menuLabel,
+.sideMenu.collapsed .brandAndLogo,
+.sideMenu.collapsed .menuItemText {
+    display: none;
+}
+
+.menuItemText {
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Ensures overflow is hidden */
+    text-overflow: ellipsis; /* Adds an ellipsis for overflowed text */
+}
+
+.menuLabel {
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Ensures overflow is hidden */
+    text-overflow: ellipsis; /* Adds an ellipsis for overflowed text */
+}
+
+.icon {
+    filter: brightness(0.3) saturate(100%) invert(0.86); /* Example to change black to gray */
+    transition: filter 0.3s;
+}
+
+.menuItem:hover .icon {
+    filter: brightness(0) saturate(100%) invert(0.3); /* Example to change gray to black on hover */
+}
+
+.brandAndLogo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand {
+    color: #23272E;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Public Sans", Roboto, sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 109.091% */
+}
+
+.logo {
+    /* Adjust the size of your logo if needed */
+    width: 24px;
+    height: auto;
+}

@@ -1,0 +1,13 @@
+.profitPercentageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 4px;
+}
+
+.profitPercentage  {
+    background: rgba(40, 199, 111, 0.16); /* Adjust based on profit */
+    border-radius: 4px;
+    padding: 4px;
+    color: #28C76F; /* Adjust based on profit */
+}

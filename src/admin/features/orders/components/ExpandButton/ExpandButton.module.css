@@ -1,0 +1,22 @@
+.expandButton {
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.expandButtonInner {
+    width: 20px;
+    height: 20px;
+    background: #8B909A;
+}
+.rotate {
+    transform: rotate(180deg); /* Rotates the icon 180 degrees */
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+}
+.rotateBack {
+    transform: rotate(0deg); /* Rotates the icon to 0 degrees */
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+}
